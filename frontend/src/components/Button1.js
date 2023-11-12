@@ -4,7 +4,7 @@ const Button1 = ({ onClick, children, style }) => {
   const defaultStyle = {
     margin: '1rem',
     padding: '1rem',
-    width: '100%',
+    width: '200px',
     backgroundColor: '#C7FCEB',
     color: 'black',
     border: 'none',
