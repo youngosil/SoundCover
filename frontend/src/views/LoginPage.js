@@ -3,19 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
 
 function LoginPage() {
-  const [postID, setPostID] = useState('');
-  const [postPW, setPostPW] = useState('');
-
+  const [ID, setID] = useState('');
+  const [PW, setPW] = useState('');
+  
   const navigate = useNavigate();
+  const goToSignupPage = () => {
+    navigate('/SignupPage');
+  };
 
   const handleLogin = () => {
-    // 여기에서 로그인 처리 로직을 구현하고 postID, postPW 상태를 사용할 수 있음.
-    console.log('postID:', postID);
-    console.log('postPW:', postPW);
+    // 여기에서 로그인 처리 로직을 구현
+    // ID, PW 상태를 백엔드에서 사용
+    console.log('ID:', ID);
+    console.log('PW:', PW);
 
     setTimeout(() => {
       navigate('/PromptPage1');
-    }, 2000) // 2초 후에 이동 -> 페이지 이동이 안됨 수정해야됨
+    }, 2000)
+    
   };
 
   return (
@@ -25,15 +30,15 @@ function LoginPage() {
           반갑습니다.<br />
           SOUNDCOVER 입니다.<br />
           <input
-            name="postID"
-            value={postID || "아이디를 입력해주세요."}
-            onChange={(e) => setPostID(e.target.value)}
+            name="ID"
+            value={ID || "아이디를 입력해주세요."}
+            onChange={(e) => setID(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem' }}
           /><br />
           <input
-            name="postPW"
-            value={postPW || "비밀번호를 입력해주세요."}
-            onChange={(e) => setPostPW(e.target.value)}
+            name="PW"
+            value={PW || "비밀번호를 입력해주세요."}
+            onChange={(e) => setPW(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem' }}
           />
         </label>
@@ -41,7 +46,7 @@ function LoginPage() {
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button1 onClick={handleLogin}>로그인</Button1>
-        <Button1 style={{ backgroundColor: 'black', color: '#C7FCEB' }}>회원가입</Button1>
+        <Button1 onClick={goToSignupPage} style={{ backgroundColor: 'black', color: '#C7FCEB' }}>회원가입</Button1>
       </div>
     </div>
   );
