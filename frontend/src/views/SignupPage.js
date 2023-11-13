@@ -10,11 +10,6 @@ function SignupPage() {
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    // 여기에서 로그인 처리 로직을 구현
-    // NewID, NewPW 상태를 백엔드에서 사용
-    // console.log('NewNickname:', NewNickname);
-    // console.log('NewID:', NewID);
-    // console.log('NewPW:', NewPW);
 
     try {
       const response = await fetch('http://127.0.0.1:8000/SignUp', {
@@ -23,9 +18,9 @@ function SignupPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          member_name: NewNickname,
-          member_id: NewID,
-          member_pw: NewPW,
+          name: NewNickname,
+          id: NewID,
+          password: NewPW,
         }),
       });
 
@@ -33,13 +28,13 @@ function SignupPage() {
         // 성공적으로 응답 받았을 때의 로직
         const data = await response.json();
         
-        if (data==true) {
+        if (data.status === 'success') {
           console.log('Signup successful:', data);
           
           // 로그인 후의 페이지로 이동
           setTimeout(() => {
             navigate('/LoginPage');
-          }, 1000)
+          }, 2000)
         }
       } else {
         // 응답이 실패했을 때의 로직
