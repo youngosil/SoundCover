@@ -33,11 +33,11 @@ def root():
     return {"Hello":"SoundCover"}
 
 @app.post("/LogIn")
-def is_memberinfo_true(member_id: str, member_password: str):
-    for member in memberDB:
-        if member.id == member_id and member.password == member_password:
-            flag = True
-    return {flag}
+def is_memberinfo_true(member: Member):
+    for existing_member in memberDB:
+        if existing_member.id == member.id and existing_member.password == member.password:
+            return {'status':'success'}
+    return {'status':'fail'}
 
 
 @app.post("/SignUp")
