@@ -23,9 +23,9 @@ function SignupPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          member_name: NewNickname,
-          member_id: NewID,
-          member_pw: NewPW,
+          name: NewNickname,
+          id: NewID,
+          password: NewPW,
         }),
       });
 
