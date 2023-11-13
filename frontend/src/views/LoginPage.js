@@ -19,21 +19,23 @@ function LoginPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          member_id: ID,
-          member_pw: PW,
+          id: ID,
+          pw: PW,
         }),
       });
 
       if (response.ok) {
         // 성공적으로 응답 받았을 때의 로직
         const data = await response.json();
-        console.log('Login successful:', data);
 
-        // 예를 들어, 서버에서 토큰을 받아 로컬 스토리지에 저장할 수 있습니다.
-        // localStorage.setItem('token', data.token);
+        if (data.status === 'success') {
+          console.log('Login successful:', data);
+        }
 
         // 로그인 후의 페이지로 이동
-        navigate('/PromptPage1');
+        setTimeout(() => {
+          navigate('/PromptPage1');
+        }, 2000)
       } else {
         // 응답이 실패했을 때의 로직
         console.error('Login failed:', response.status);
