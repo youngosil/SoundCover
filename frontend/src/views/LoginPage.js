@@ -20,7 +20,7 @@ function LoginPage() {
         },
         body: JSON.stringify({
           id: ID,
-          pw: PW,
+          password: PW,
         }),
       });
 
@@ -36,6 +36,7 @@ function LoginPage() {
         setTimeout(() => {
           navigate('/PromptPage1');
         }, 2000)
+
       } else {
         // 응답이 실패했을 때의 로직
         console.error('Login failed:', response.status);
@@ -53,13 +54,15 @@ function LoginPage() {
           SOUNDCOVER 입니다.<br />
           <input
             name="ID"
-            value={ID || "아이디를 입력해주세요."}
+            placeholder="아이디를 입력해주세요"
+            value={ID}
             onChange={(e) => setID(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem' }}
           /><br />
           <input
             name="PW"
-            value={PW || "비밀번호를 입력해주세요."}
+            placeholder="비밀번호를 입력해주세요."
+            value={PW}
             onChange={(e) => setPW(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem' }}
           />

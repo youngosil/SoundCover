@@ -21,7 +21,8 @@ function PromptPage1() {
       이번 앨범의 주제는 무엇인가요?<br />
         <input
           name="Prompt1"
-          value={Prompt1 || "(100자 이내로 입력해주세요.)"}
+          placeholder="(100자 이내로 입력해주세요.)"
+          value={Prompt1}
           onChange={(e) => setPrompt1(e.target.value)}
           style={{ padding: '1rem', marginTop: '2rem', width: '600px', height: '300px' }}
         /><br />
