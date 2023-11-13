@@ -9,6 +9,10 @@ function PromptPage4() {
 
   const handlePrompt = () => {
     console.log('Prompt4:', Prompt4);
+
+    setTimeout(() => {
+      navigate('/ExtractedAlbumsPage');
+    }, 800)
   };
 
   const backtoPreviousPage = () => {
