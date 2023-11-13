@@ -11,16 +11,36 @@ function LoginPage() {
     navigate('/SignupPage');
   };
 
-  const handleLogin = () => {
-    // 여기에서 로그인 처리 로직을 구현
-    // ID, PW 상태를 백엔드에서 사용
-    console.log('ID:', ID);
-    console.log('PW:', PW);
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/LogIn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          member_id: ID,
+          member_pw: PW,
+        }),
+      });
 
-    setTimeout(() => {
-      navigate('/PromptPage1');
-    }, 2000)
-    
+      if (response.ok) {
+        // 성공적으로 응답 받았을 때의 로직
+        const data = await response.json();
+        console.log('Login successful:', data);
+
+        // 예를 들어, 서버에서 토큰을 받아 로컬 스토리지에 저장할 수 있습니다.
+        // localStorage.setItem('token', data.token);
+
+        // 로그인 후의 페이지로 이동
+        navigate('/PromptPage1');
+      } else {
+        // 응답이 실패했을 때의 로직
+        console.error('Login failed:', response.status);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
   };
 
   return (
