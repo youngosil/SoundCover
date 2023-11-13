@@ -2,8 +2,18 @@ from fastapi import FastAPI
 #from fastapi.responses import HTMLResponse
 #from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+# CORS 미들웨어를 추가
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # 허용할 origin을 추가
+    allow_credentials=True,
+    allow_methods=["*"],  # 모든 HTTP 메서드를 허용
+    allow_headers=["*"],  # 모든 헤더를 허용
+)
 
 memberDB = []
 albumDB = []
@@ -13,20 +23,10 @@ class Member(BaseModel):
     id: str
     password: str
 
-    def __init__(self, name, id, password):
-        self.name = name
-        self.id = id
-        self.password = password
-
 class Image(BaseModel):
     album_index: int
     member_name: str
     url: str
-
-    def __init__(self, member_name, url):
-        self.member_name = member_name
-        self.url = url
-        self.album_indexalbum_index = len(albumDB)
 
 @app.get("/")
 def root():
@@ -34,7 +34,6 @@ def root():
 
 @app.post("/LogIn")
 def is_memberinfo_true(member_id: str, member_password: str):
-    flag = False
     for member in memberDB:
         if member.id == member_id and member.password == member_password:
             flag = True
@@ -42,14 +41,15 @@ def is_memberinfo_true(member_id: str, member_password: str):
 
 
 @app.post("/SignUp")
-def post_signup_info(member_name: str, member_id: str, member_password: str):
+def post_signup_info(member: Member):
     flag = True
-    for member in memberDB:
-        if member.name == member_name:
+    for existing_member in memberDB:
+        if existing_member.name == member.name:
             flag = False
-    if flag == True:
-        memberDB.append(Member(member_name,member_id,member_password))
-    return {flag}
+            return{"status": "fail"}
+    if flag:
+        memberDB.append(member)
+    return {"status": "success"}
 
 @app.get("/MyPage/{member_name}/{album_index}")
 def get_album(member_name  : str, album_index: int):
