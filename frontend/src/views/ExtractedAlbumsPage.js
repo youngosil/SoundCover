@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function ExtractedAlbumsPage() {
   const [hoveredIndex, setHoveredIndex] = useState(null);

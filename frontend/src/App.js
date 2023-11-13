@@ -24,7 +24,8 @@ function App() {
         <Route path='/PromptPage1' element={<PromptPage1 />} />
         <Route path='/PromptPage2' element={<PromptPage2 />} />
         <Route path='/PromptPage3' element={<PromptPage3 />} />
-        <Route path='/PromptPage4' element={<PromptPage4 />} />        <Route path='/ExtractedAlbumsPage' element={<ExtractedAlbumsPage />} />
+        <Route path='/PromptPage4' element={<PromptPage4 />} />
+        <Route path='/ExtractedAlbumsPage' element={<ExtractedAlbumsPage />} />
       </Routes>
     </div>
   );

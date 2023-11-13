@@ -9,18 +9,50 @@ function SignupPage() {
   
   const navigate = useNavigate();
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     // 여기에서 로그인 처리 로직을 구현
     // NewID, NewPW 상태를 백엔드에서 사용
-    console.log('NewNickname:', NewNickname);
-    console.log('NewID:', NewID);
-    console.log('NewPW:', NewPW);
+    // console.log('NewNickname:', NewNickname);
+    // console.log('NewID:', NewID);
+    // console.log('NewPW:', NewPW);
 
-    setTimeout(() => {
-      navigate('/LoginPage');
-    }, 2000)
-    
+    try {
+      const response = await fetch('http://127.0.0.1:8000/SignUp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          member_name: NewNickname,
+          member_id: NewID,
+          member_pw: NewPW,
+        }),
+      });
+
+      if (response.ok) {
+        // 성공적으로 응답 받았을 때의 로직
+        const data = await response.json();
+        
+        if (data==true) {
+          console.log('Signup successful:', data);
+          
+          // 로그인 후의 페이지로 이동
+          setTimeout(() => {
+            navigate('/LoginPage');
+          }, 1000)
+        }
+      } else {
+        // 응답이 실패했을 때의 로직
+        console.error('Signup failed:', response.status);
+      }
+    } catch (error) {
+      console.error('Error during Signup:', error);
+    }
   };
+
+
+
+    
 
   return (
     <div style={{ width: '100%', margin: '0' }}>
