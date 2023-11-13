@@ -27,7 +27,8 @@ function PromptPage3() {
       이번 앨범의 소개글을 작성해주세요!<br />
         <input
           name="Prompt3"
-          value={Prompt3 || "(100자 이내로 입력해주세요.)"}
+          placeholder="(100자 이내로 입력해주세요.)"
+          value={Prompt3}
           onChange={(e) => setPrompt3(e.target.value)}
           style={{ padding: '1rem', marginTop: '2rem', width: '600px', height: '300px' }}
         /><br />

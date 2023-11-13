@@ -18,8 +18,15 @@ app.add_middleware(
 memberDB = []
 albumDB = []
 
-class Member(BaseModel):
+
+# signup과 login에서 입력받는 변수의 개수가 다름
+# 따라서 model 분리
+class SignupMember(BaseModel):
     name: str
+    id: str
+    password: str
+
+class LoginMember(BaseModel):
     id: str
     password: str
 
@@ -33,15 +40,15 @@ def root():
     return {"Hello":"SoundCover"}
 
 @app.post("/LogIn")
-def is_memberinfo_true(member_id: str, member_password: str):
-    for member in memberDB:
-        if member.id == member_id and member.password == member_password:
-            flag = True
-    return {flag}
+def is_memberinfo_true(member: LoginMember):
+    for existing_member in memberDB:
+        if existing_member.id == member.id and existing_member.password == member.password:
+            return {'status':'success'}
+    return {'status':'fail'}
 
 
 @app.post("/SignUp")
-def post_signup_info(member: Member):
+def post_signup_info(member: SignupMember):
     flag = True
     for existing_member in memberDB:
         if existing_member.name == member.name:

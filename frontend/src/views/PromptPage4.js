@@ -27,7 +27,8 @@ function PromptPage4() {
       이번 앨범에는 어떤 노래들이 포함되어 있나요?<br />
         <input
           name="Prompt4"
-          value={Prompt4 || "(100자 이내로 입력해주세요.)"}
+          placeholder="(100자 이내로 입력해주세요.)"
+          value={Prompt4}
           onChange={(e) => setPrompt4(e.target.value)}
           style={{ padding: '1rem', marginTop: '2rem', width: '600px', height: '300px' }}
         /><br />

@@ -10,7 +10,6 @@ function SignupPage() {
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-
     try {
       const response = await fetch('http://127.0.0.1:8000/SignUp', {
         method: 'POST',
@@ -56,7 +55,8 @@ function SignupPage() {
           닉네임 :  
           <input
             name="NewNickname"
-            value={NewNickname || "사용하고자 하는 닉네임을 입력해주세요."}
+            placeholder='사용하고자 하는 닉네임을 입력해주세요.'
+            value={NewNickname}
             onChange={(e) => setNewNickname(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
           /><br />
@@ -66,7 +66,8 @@ function SignupPage() {
           ID : 
           <input
             name="NewID"
-            value={NewID || "사용하고자 하는 아이디를 입력해주세요."}
+            placeholder='사용하고자 하는 아이디를 입력해주세요.'
+            value={NewID}
             onChange={(e) => setNewID(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
           /><button 
@@ -77,7 +78,8 @@ function SignupPage() {
           PW : 
           <input
             name="NewPW"
-            value={NewPW || "4자리 비밀번호를 입력해주세요."}
+            placeholder='4자리 비밀번호를 입력해주세요.'
+            value={NewPW}
             onChange={(e) => setNewPW(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
           />

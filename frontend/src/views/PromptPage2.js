@@ -27,7 +27,8 @@ function PromptPage2() {
       이번 앨범의 장르는 무엇인가요?<br />
         <input
           name="Prompt2"
-          value={Prompt2 || "(100자 이내로 입력해주세요.)"}
+          placeholder="(100자 이내로 입력해주세요.)"
+          value={Prompt2}
           onChange={(e) => setPrompt2(e.target.value)}
           style={{ padding: '1rem', marginTop: '2rem', width: '600px', height: '300px' }}
         /><br />
