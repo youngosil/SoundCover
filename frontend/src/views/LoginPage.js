@@ -48,17 +48,19 @@ function LoginPage() {
 
   return (
     <div style={{ width: '100%', margin: '0' }}>
-      <div style={{ width: '100%', margin: '1rem auto' }}>
+      <div style={{ width: '100%', margin: '1rem auto'}}>
         <label>
           반갑습니다.<br />
-          SOUNDCOVER 입니다.<br />
+          SOUNDCOVER 입니다.<br /><br />
+        </label>
+        <div style={{ display: 'flex', flexDirection: 'column'}}>
           <input
             name="ID"
             placeholder="아이디를 입력해주세요"
             value={ID}
             onChange={(e) => setID(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem' }}
-          /><br />
+          />
           <input
             name="PW"
             placeholder="비밀번호를 입력해주세요."
@@ -66,12 +68,9 @@ function LoginPage() {
             onChange={(e) => setPW(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem' }}
           />
-        </label>
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Button1 onClick={handleLogin}>로그인</Button1>
-        <Button1 onClick={goToSignupPage} style={{ backgroundColor: 'black', color: '#C7FCEB' }}>회원가입</Button1>
+          <Button1 onClick={handleLogin}>로그인</Button1>
+          <Button1 onClick={goToSignupPage} style={{ backgroundColor: 'black', color: '#C7FCEB' }}>회원가입</Button1>
+        </div>
       </div>
     </div>
   );

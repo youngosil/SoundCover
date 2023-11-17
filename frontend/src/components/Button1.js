@@ -2,9 +2,8 @@ import React, { onClick, style } from 'react';
 
 const Button1 = ({ onClick, children, style }) => {
   const defaultStyle = {
-    margin: '1rem',
+    marginTop: '1rem',
     padding: '1rem',
-    width: '200px',
     backgroundColor: '#C7FCEB',
     color: 'black',
     border: 'none',
