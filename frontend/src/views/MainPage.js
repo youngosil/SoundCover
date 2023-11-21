@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import '../Mainpage.css';
 import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
+import {gsap, Power0} from 'gsap'
 
 const MainPage = () => {
     const navigate = useNavigate();
@@ -10,9 +11,12 @@ const MainPage = () => {
       navigate('/LoginPage');
     };
     
+    /* 애니메이션 구현 */
+    const trendImagesRef = useRef([]);
 
     return (
-        /*웹 사이트 소개 */
+        // 웹 사이트 소개 
+        // 상단 이미지 구성
         <div style={{position: 'relative', marginTop: '70%', marginBottom: '30px', marginLeft: '100px'}}>
             <img src="images/albums.png" style={{ width: '1000px', height: '300px'}} alt="Albums" />
             <img src="images/headphone.png" style={{ width: '158px', height: '137px', position: 'relative', top: '-200px', left: '-200px' }} alt="Headphones" />
@@ -27,6 +31,8 @@ const MainPage = () => {
             <div style={{marginTop: '60px', marginBottom: '60px'}}>
                 <Button1 onClick={goToLoginPage}>Make Album Cover</Button1>
             </div>
+
+            {/* 하단 앨범 이미지 구성 및 애니메이션*/}
             <div>
             {[62, 811, 63, 91, 211, 92].map((index) => (
             <img
