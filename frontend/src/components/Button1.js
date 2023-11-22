@@ -2,7 +2,6 @@ import React, { onClick, style } from 'react';
 
 const Button1 = ({ onClick, children, style }) => {
   const defaultStyle = {
-    marginTop: '1rem',
     padding: '1rem',
     backgroundColor: '#C7FCEB',
     color: 'black',
@@ -10,10 +9,16 @@ const Button1 = ({ onClick, children, style }) => {
     borderRadius: '10px',
     cursor: 'pointer',
     fontFamily: 'Montserrat',
+    margin : '1rem'
   };
 
   return (
-    <button style={{ ...defaultStyle, ...style }} onClick={onClick}>
+    <button
+      style={{ ...defaultStyle, ...style }}
+      onClick={onClick}
+      onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.3) '}
+      onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+    >
       {children}
     </button>
   );
