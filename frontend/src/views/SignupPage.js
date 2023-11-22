@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
 
 function SignupPage() {
-  const [NewNickname, setNewNickname] = useState('');
+  //const [NewNickname, setNewNickname] = useState('');
   const [NewID, setNewID] = useState('');
   const [NewPW, setNewPW] = useState('');
   
@@ -17,7 +17,7 @@ function SignupPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: NewNickname,
+          //name: NewNickname,
           id: NewID,
           password: NewPW,
         }),
@@ -51,7 +51,7 @@ function SignupPage() {
   return (
     <div style={{ width: '100%', margin: '0' }}>
       <div style={{ width: '100%', margin: '1rem auto'}}>
-        <label>
+        {/*<label>
           닉네임 :  
           <input
             name="NewNickname"
@@ -60,9 +60,9 @@ function SignupPage() {
             onChange={(e) => setNewNickname(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
           /><br />
-        </label>
+        </label>*/}
 
-        <label>
+        <label style={{ display: 'flex', alignItems: 'center' }}>
           ID : 
           <input
             name="NewID"
@@ -70,8 +70,9 @@ function SignupPage() {
             value={NewID}
             onChange={(e) => setNewID(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
-          /><button 
-              style={{ marginLeft: '1rem', padding: '0.5rem'}}>중복확인</button><br/>
+          />
+          <button 
+            style={{ marginLeft: '1rem', padding: '0.5rem'}}>중복확인</button><br/>
         </label>
 
         <label>

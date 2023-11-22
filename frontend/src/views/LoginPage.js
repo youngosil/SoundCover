@@ -34,7 +34,7 @@ function LoginPage() {
 
         // 로그인 후의 페이지로 이동
         setTimeout(() => {
-          navigate('/PromptPage1');
+          navigate('/SelectPage');
         }, 2000)
 
       } else {

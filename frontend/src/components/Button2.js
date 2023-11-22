@@ -9,14 +9,15 @@ const Button1 = ({ onClick, children, style }) => {
     borderRadius: '10px',
     cursor: 'pointer',
     fontFamily: 'Montserrat',
-    marginTop : '1rem',
-    width : '100%'
+    margin : '1rem'
   };
 
   return (
     <button
       style={{ ...defaultStyle, ...style }}
       onClick={onClick}
+      onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.3) '}
+      onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
     >
       {children}
     </button>
