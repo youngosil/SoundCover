@@ -11,7 +11,7 @@ const PaintingStylePage = () => {
         //console.log('Prompt1:', Prompt1);
     
         setTimeout(() => {
-          navigate('/PromptPage3');
+          navigate('/Elements');
         }, 500);
       };
 
