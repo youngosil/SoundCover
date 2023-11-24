@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
 import { containerStyle, labelStyle } from '../styles';
 
+// database에 저장된 id별 데이터 가져와서 출력해야됨
+
 function MyAlbums() {
   const [Prompt1, setPrompt1] = useState('');
   
