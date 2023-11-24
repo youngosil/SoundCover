@@ -76,6 +76,9 @@ def create_user(db: db_dependency, create_user_request: CreateUserRequest):
     
     db.add(create_user_model)
     db.commit()
+    
+    # 엄소 수정 부분
+    return {"status":"success", "message": "User created succesfully"}
 
 @router.post("/token", response_model = Token)
 def login_for_access_tokenn(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],

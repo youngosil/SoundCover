@@ -13,29 +13,30 @@ function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/LogIn', {
+      const formData = new URLSearchParams();
+      formData.append('username', ID);
+      formData.append('password', PW);
+
+      const response = await fetch('http://127.0.0.1:8000/auth/token', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          id: ID,
-          password: PW,
-        }),
+        body: formData
       });
 
       if (response.ok) {
         // 성공적으로 응답 받았을 때의 로직
         const data = await response.json();
 
-        if (data.status === 'success') {
+        if (data.access_token) {
           console.log('Login successful:', data);
         }
 
         // 로그인 후의 페이지로 이동
         setTimeout(() => {
           navigate('/SelectPage');
-        }, 2000)
+        }, 500)
 
       } else {
         // 응답이 실패했을 때의 로직
