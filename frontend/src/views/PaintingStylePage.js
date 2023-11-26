@@ -1,5 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
-import '../Mainpage.css';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
@@ -29,7 +28,7 @@ const PaintingStylePage = () => {
 
     const backtoPreviousPage = () => {
       setTimeout(() => {
-        navigate('/PaintingStylePage');
+        navigate('/GenrePage');
       }, 500)
     };
 

@@ -1,69 +1,55 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { containerStyle, labelStyle } from '../styles';
-import Button1 from '../components/Button1'
+import Button1 from '../components/Button1';
+import Element from '../components/Element.js';
 
+function YourMainComponent() {
+  const navigate = useNavigate();
 
-function Sentiments() {
-    const [PosSentiment1, setPosSentiment1] = useState('');
-    const [NegSentiment1, setNegSentiment1] = useState('');
-    
-    const navigate = useNavigate();
+  // SentimentList를 각각의 변수에 할당
+  const [posSentimentList, setPosSentimentList] = useState([]);
+  const [negSentimentList, setNegSentimentList] = useState([]);
 
-    const gotoNextPage = () => {
-        console.log('PosSentiment1:', PosSentiment1);
-        console.log('NegSentiment1:', NegSentiment1)
-    
-        setTimeout(() => {
-          navigate('/ExtractedAlbumsPage');
-        }, 500)
-      };
-    
-      const backtoPreviousPage = () => {
-        setTimeout(() => {
-          navigate('/Elements');
-        }, 500)
-      };
-    
-    return (
-        <div style={containerStyle}> {/*style.js에 css처럼 기재*/}
-          <label style={labelStyle}>
-            000님,<br />
-          </label>
-          <label>
-            지금까지의 항목들 이외에 추가/제외하고 싶은 것이 있나요?<br />
-          </label>
+  const handlePrompt = () => {
+    console.log('Positive SentimentList:', posSentimentList);
+    console.log('Negative SentimentList:', negSentimentList);
 
-          <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
-            <input
-                name="PosSentiment1"
-                placeholder="(free spirit)"
-                value={PosSentiment1}
-                onChange={(e) => setPosSentiment1(e.target.value)}
-                style={{ padding: '1rem', margin: '2rem', width: '300px', height: '10%' }}
-            />
+    setTimeout(() => {
+      navigate('/ExtractedAlbumsPage');
+    }, 500);
+  };
 
-            <input
-                name="NegSentiment1"
-                placeholder="(sad spirit)"
-                value={NegSentiment1}
-                onChange={(e) => setNegSentiment1(e.target.value)}
-                style={{ padding: '1rem', margin: '2rem', width: '300px', height: '10%' }}
-            />
-          </div>
-          
+  const backtoPreviousPage = () => {
+    setTimeout(() => {
+      navigate('/Sentiments');
+    }, 500);
+  };
 
-          <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
-            <Button1 onClick={backtoPreviousPage}>&#171;&#171; 
-              이전으로 돌아가기
-            </Button1>
-            <Button1 onClick={gotoNextPage} style = {{ marginLeft: '3rem' }}>
-              다음으로 넘어가기 &#187;&#187; 
-            </Button1>
-          </div>
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <h1>Additionally</h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div>
+          <h3>Include...</h3>
+          <Element listName='PosSentiments' onListChange={setPosSentimentList} />
         </div>
-    
-      );
-    }
-    
-export default Sentiments;
+        <div>
+          <h3>Exclude...</h3>
+          <Element listName='NegSentiments' onListChange={setNegSentimentList} />
+        </div>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button1 onClick={backtoPreviousPage}>&#171;&#171; 이전으로 돌아가기</Button1>
+        <Button1 onClick={handlePrompt} style={{ marginLeft: '3rem' }}>
+          다음으로 넘어가기 &#187;&#187;
+        </Button1>
+      </div>
+    </div>
+  );
+}
+
+export default YourMainComponent;
+
+
+
+
