@@ -63,16 +63,16 @@ function SignupPage() {
         </label>*/}
 
         <label style={{ display: 'flex', alignItems: 'center' }}>
-          ID : 
+          ID :   
           <input
             name="NewID"
             placeholder='사용하고자 하는 아이디를 입력해주세요.'
             value={NewID}
             onChange={(e) => setNewID(e.target.value)}
-            style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
+            style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem'}}
           />
-          <button 
-            style={{ marginLeft: '1rem', padding: '0.5rem'}}>중복확인</button><br/>
+          <Button1 
+            style={{ width: '100px',marginLeft: '1rem', padding: '0.7rem', marginTop: '0.5rem', marginBottom: '1rem'}}>중복확인</Button1><br/>
         </label>
 
         <label>

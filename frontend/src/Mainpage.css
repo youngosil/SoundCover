@@ -1,7 +1,12 @@
 .trend-image {
-  width: 13%;
-  height: 13%;
+  width: 14%;
+  height: 14%;
   margin: 1%;
+  position: relative;
+  transition: transform 0.5s ease-in-out; /* 천천히 확대 */
+}
+
+.trend-image2 {
   position: relative;
   transition: transform 0.5s ease-in-out; /* 천천히 확대 */
 }

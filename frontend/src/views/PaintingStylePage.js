@@ -7,35 +7,48 @@ const PaintingStylePage = () => {
 
     const navigate = useNavigate();
 
+    const [selectedPaintingStyles, setSelectedPaintingStyles] = useState([]);
+
+    const handlePaintingStyleClick = (PaintingStyle) => {
+      // Toggle the selection of the PaintingStyle
+      const updatedPaintingStyles = selectedPaintingStyles.includes(PaintingStyle)
+        ? selectedPaintingStyles.filter((selectedPaintingStyle) => selectedPaintingStyle !== PaintingStyle)
+        : [...selectedPaintingStyles, PaintingStyle];
+  
+      setSelectedPaintingStyles(updatedPaintingStyles);
+    };
+
+
     const handlePrompt = () => {
-        //console.log('Prompt1:', Prompt1);
+      console.log('Selected Painting Styles', selectedPaintingStyles);
     
-        setTimeout(() => {
-          navigate('/Elements');
-        }, 500);
-      };
+      setTimeout(() => {
+        navigate('/Elements');
+      }, 500);
+    };
 
     const backtoPreviousPage = () => {
-        setTimeout(() => {
-          navigate('/GenrePage');
-        }, 500)
-      };
+      setTimeout(() => {
+        navigate('/PaintingStylePage');
+      }, 500)
+    };
 
     return (
         <div>
             <div>
-                <h2>Choose your PaintingStyle</h2>
+              <h1>Choose the painting style of your album</h1>
+              <h4>Multiple responses are possible</h4>
             </div>
-            <div>
-                <Button2>Realism</Button2>
-                <Button2>Painterly</Button2>
-                <Button2>Impressionism</Button2>
-                <Button2>Expressionism and Fauvism</Button2>
-            </div>
-            <div>
-                <Button2>Abstraction</Button2>
-                <Button2>Abstract</Button2>
-                <Button2>Photorealism</Button2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {['impressionistic', 'surrealistic', 'pop art', 'realistic', 'cartoon-style', 'oil painting', 'watercolor painting'].map((PaintingStyle) => (
+                <Button2
+                  key={PaintingStyle}
+                  selected={selectedPaintingStyles.includes(PaintingStyle)}
+                  onClick={() => handlePaintingStyleClick(PaintingStyle)}
+                >
+                  {PaintingStyle}
+                </Button2>
+              ))}
             </div>
             <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button1 onClick={backtoPreviousPage}>&#171;&#171; 
