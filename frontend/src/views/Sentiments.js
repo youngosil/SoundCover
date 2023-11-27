@@ -17,18 +17,28 @@ const Sentiments = () => {
 
   const handlePrompt = async () => {
     try {
-      console.log('Positive SentimentList:', posSentimentList);
+      console.log('posSentimentList:', posSentimentList);
 
       const updatedData = {
         ...sharedData.data,
-        'Selected Sentiments': posSentimentList ? [posSentimentList].join(', ') : '', // Use ', ' as a separator
+        'posSentimentList': posSentimentList ? [posSentimentList].join(', ') : '', // Use ', ' as a separator
       };
   
       updateSharedData(sharedData.message, updatedData);
   
-      console.log('Shared Data:', updatedData);
-      console.log('title:', updateSharedData.Title);
+      setTimeout(() => {
+        console.log('updated Data:', updatedData);
+      }, 500);
 
+      setTimeout(() => {
+        console.log('Shared Data:', sharedData);
+      }, 500);
+
+      console.log('title:', sharedData.data.Title);
+      console.log('singer:', sharedData.data.Singer);
+      console.log('selectedGenre:', sharedData.data.selectedGenre);
+      console.log('print_title:', sharedData.data.print_title);
+      console.log('posSentimentList', sharedData.data.posSentimentList);
 
       // 백엔드로 데이터 전송
       const response = await fetch('http://127.0.0.1:8000/cover', {
@@ -38,15 +48,15 @@ const Sentiments = () => {
           Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify({
-          "title": updateSharedData.Title,
-          "singer": updateSharedData.Singer,       
-          "print_title": updateSharedData.print_title,
-          "print_singer": updateSharedData.print_singer,
-          "genre": updateSharedData.selectedGenre,
-          "style": updateSharedData.selectedPaintingStyle,
-          "positive_element": updateSharedData.PosElementList,
-          "positive_sentiment": updateSharedData.posSentimentList,          
-          "url": updateSharedData.url,
+          "title": sharedData.data.Title,
+          "singer": sharedData.data.Singer,       
+          "print_title": sharedData.data.print_title,
+          "print_singer": sharedData.data.print_singer,
+          "genre": sharedData.data.selectedGenre,
+          "style": sharedData.data.selectedPaintingStyle,
+          "positive_element": sharedData.data.posElementList,
+          "positive_sentiment": sharedData.data.posSentimentList,          
+          "url": sharedData.data.url,
         }),
       });
   

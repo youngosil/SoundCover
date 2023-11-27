@@ -19,11 +19,11 @@ const GenrePage = () => {
 
   const handlePrompt = () => {
     // Send selected genre to the backend
-    console.log('Selected Genre:', selectedGenre);
+    console.log('selectedGenre:', selectedGenre);
 
     const updatedData = {
       ...sharedData.data,
-      'Selected Genre': selectedGenre || '', // Store as an empty string if not selected
+      'selectedGenre': selectedGenre || '', // Store as an empty string if not selected
     };
     
     updateSharedData(sharedData.message, updatedData);

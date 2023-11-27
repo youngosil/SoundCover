@@ -19,11 +19,11 @@ const PaintingStylePage = () => {
 
 
   const handlePrompt = () => {
-    console.log('Selected Painting Style:', selectedPaintingStyle);
+    console.log('selectedPaintingStyle:', selectedPaintingStyle);
 
     const updatedData = {
       ...sharedData.data,
-      'Selected PaintingStyle': selectedPaintingStyle || '',
+      'selectedPaintingStyle': selectedPaintingStyle || '',
     };
 
     updateSharedData(sharedData.message, updatedData);
