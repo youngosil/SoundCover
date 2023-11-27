@@ -24,7 +24,8 @@ const TrendingOn = () => {
     };
 
     const handlePrompt = () => {
-        console.log('Selected Sites', selectedImages.map((selectedImage) => selectedImage.site));
+        const selectedImagesKeywords = selectedImages.map((selectedImage) => selectedImage.site);
+        console.log('Selected Sites', selectedImagesKeywords);
         
         const updatedData = {
           ...sharedData.data,

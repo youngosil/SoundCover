@@ -34,21 +34,19 @@ const Sentiments = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          genre: selectedGenres,
-          trendingon: selectedImages.map((selectedImage) => selectedImage.site),
-          style: selectedPaintingStyles,
-          positive_element: PosElementList,
-          negative_element: NegElementList,
-          positive_sentiment: posSentimentList,
-          negative_sentiment: negSentimentList,
+          genre: updateSharedData.selectedGenres,
+          trendingon: updateSharedData.selectedImagesKeywords,
+          style: updateSharedData.selectedPaintingStyles,
+          positive_element: updateSharedData.PosElementList,
+          negative_element: updateSharedData.NegElementList,
+          positive_sentiment: updateSharedData.posSentimentList,
+          negative_sentiment: updateSharedData.negSentimentList,
         }),
       });
   
       if (response.ok) {
-        // 성공적으로 전송
         console.log('Data successfully sent to the server.');
       } else {
-        // 전송 실패 시 에러 처리
         console.error('Failed to send data to the server.');
       }
   

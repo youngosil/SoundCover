@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
+import { useUser } from '../contexts/UserContext';
+
 
 function LoginPage() {
   const [ID, setID] = useState('');
@@ -8,6 +10,8 @@ function LoginPage() {
   const [showErrorPopup, setShowErrorPopup] = useState(false); // 에러 여부 결정
   
   const navigate = useNavigate();
+  const { login } = useUser();
+  
   const goToSignupPage = () => {
     navigate('/SignupPage');
   };
@@ -32,13 +36,14 @@ function LoginPage() {
 
         if (data.access_token) {
           console.log('Login successful:', data);
+
+          login({ username: ID});
+
+          // 로그인 후의 페이지로 이동
+          setTimeout(() => {
+            navigate('/SelectPage');
+          }, 500);
         }
-
-        // 로그인 후의 페이지로 이동
-        setTimeout(() => {
-          navigate('/SelectPage');
-        }, 500);
-
       } else {
         // 응답이 실패했을 때의 로직
         console.error('Login failed:', response.status);
