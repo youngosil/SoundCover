@@ -6,6 +6,7 @@ function SignupPage() {
   //const [NewNickname, setNewNickname] = useState('');
   const [NewID, setNewID] = useState('');
   const [NewPW, setNewPW] = useState('');
+  const [showErrorPopup, setShowErrorPopup] = useState(false); // 에러 여부 결정
   
   const navigate = useNavigate();
 
@@ -23,30 +24,35 @@ function SignupPage() {
         }),
       });
 
-      if (response.ok) {
-        // 성공적으로 응답 받았을 때의 로직
-        const data = await response.json();
-        
-        if (data.status === 'success') {
-          console.log('Signup successful:', data);
-          
-          // 로그인 후의 페이지로 이동
+
+      response
+        .json()
+        .then((data) => {
+          if (!response.ok) {
+            throw new Error('User creation failed');
+          }
+
+          // 성공적으로 생성된 경우에 대한 처리
+          console.log(data.message);
           setTimeout(() => {
             navigate('/LoginPage');
-          }, 2000)
-        }
-      } else {
-        // 응답이 실패했을 때의 로직
-        console.error('Signup failed:', response.status);
-      }
+          }, 500);
+        })
+        .catch((error) => {
+          // 실패한 경우에 대한 처리
+          console.error(error.message);
+          setShowErrorPopup(true);
+          // 페이지 새로 고침
+          window.location.reload();
+        });
     } catch (error) {
-      console.error('Error during Signup:', error);
+      // 실패한 경우에 대한 처리
+      console.error(error.message);
+      // 페이지 새로 고침
+      window.location.reload();
     }
   };
 
-
-
-    
 
   return (
     <div style={{ width: '100%', margin: '0', fontFamily: 'Montserrat'}}>
@@ -91,6 +97,14 @@ function SignupPage() {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button1 onClick={handleSignup}>Sign Up</Button1>
       </div>
+
+      {/* 실패 시 에러 팝업*/}
+      {showErrorPopup && (
+        <h4 style={{ marginTop: '1rem', color: 'red', fontFamily:'Montserrat', textAlign:'center'}}>
+          ID or password is not valid.
+        </h4>
+      )}
+
     </div>
   );
 }

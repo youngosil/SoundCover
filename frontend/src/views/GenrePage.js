@@ -1,33 +1,31 @@
 import React, { useState } from 'react';
-import { useNavigate} from 'react-router-dom';
-import { usePromptContext} from '../contexts/PromptContext';
+import { useNavigate } from 'react-router-dom';
+import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
 
 const GenrePage = () => {
-  const { sharedData, updateSharedData } =usePromptContext();
+  const { sharedData, updateSharedData } = usePromptContext();
   const navigate = useNavigate();
 
-  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
 
   const handleGenreClick = (genre) => {
     // Toggle the selection of the genre
-    const updatedGenres = selectedGenres.includes(genre)
-      ? selectedGenres.filter((selectedGenre) => selectedGenre !== genre)
-      : [...selectedGenres, genre];
+    const updatedGenre = selectedGenre === genre ? '' : genre;
 
-    setSelectedGenres(updatedGenres);
+    setSelectedGenre(updatedGenre);
   };
 
   const handlePrompt = () => {
-    // Send selected genres to the backend
-    console.log('Selected Genres:', selectedGenres);
-    
+    // Send selected genre to the backend
+    console.log('Selected Genre:', selectedGenre);
+
     const updatedData = {
       ...sharedData.data,
-      'Selected Genres': selectedGenres,
+      'Selected Genre': selectedGenre || '', // Store as an empty string if not selected
     };
-
+    
     updateSharedData(sharedData.message, updatedData);
 
     // Redirect to the next page after some delay
@@ -36,27 +34,32 @@ const GenrePage = () => {
     }, 500);
   };
 
+  const backtoPreviousPage = () => {
+    setTimeout(() => {
+      navigate('/TitleSinger');
+    }, 500)
+  };
+
   return (
     <div>
       <div>
         <h1>Choose the genre of your album</h1>
-        <h4>Multiple responses are possible</h4>
+        <h4>Only one response is possible</h4>
       </div>
       <div>
         {['Pop', 'Rock', 'Punk', 'Hip-Hop', 'Jazz', 'Folk'].map((genre) => (
           <Button2
             key={genre}
-            selected={selectedGenres.includes(genre)}
+            selected={selectedGenre === genre}
             onClick={() => handleGenreClick(genre)}
           >
             {genre}
           </Button2>
         ))}
       </div>
-      <div>
-        <Button1 onClick={handlePrompt}>
-          다음으로 넘어가기 &#187;&#187;
-        </Button1>
+      <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button1 onClick={backtoPreviousPage}>&#171;&#171; 이전으로 돌아가기</Button1>
+        <Button1 onClick={handlePrompt} style = {{ marginLeft: '3rem' }}>다음으로 넘어가기 &#187;&#187;</Button1>
       </div>
     </div>
   );

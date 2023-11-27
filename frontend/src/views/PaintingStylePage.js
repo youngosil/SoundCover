@@ -8,30 +8,28 @@ const PaintingStylePage = () => {
   const { sharedData, updateSharedData } = usePromptContext();
   const navigate = useNavigate();
 
-  const [selectedPaintingStyles, setSelectedPaintingStyles] = useState([]);
+  const [selectedPaintingStyle, setSelectedPaintingStyle] = useState('');
 
-  const handlePaintingStyleClick = (PaintingStyle) => {
+  const handlePaintingStyleClick = (paintingstyle) => {
     // Toggle the selection of the PaintingStyle
-    const updatedPaintingStyles = selectedPaintingStyles.includes(PaintingStyle)
-      ? selectedPaintingStyles.filter((selectedPaintingStyle) => selectedPaintingStyle !== PaintingStyle)
-      : [...selectedPaintingStyles, PaintingStyle];
-  
-    setSelectedPaintingStyles(updatedPaintingStyles);
+    const updatedPaintingStyle = selectedPaintingStyle === paintingstyle ? '' : paintingstyle;
+
+    setSelectedPaintingStyle(updatedPaintingStyle);
   };
 
 
   const handlePrompt = () => {
-    console.log('Selected Painting Styles', selectedPaintingStyles);
+    console.log('Selected Painting Style:', selectedPaintingStyle);
 
     const updatedData = {
       ...sharedData.data,
-      'Selected Painting Styles': selectedPaintingStyles,
+      'Selected PaintingStyle': selectedPaintingStyle || '',
     };
 
     updateSharedData(sharedData.message, updatedData);
     
     setTimeout(() => {
-      navigate('/TrendingOn');
+      navigate('/Elements');
     }, 500);
   };
 
@@ -45,16 +43,16 @@ const PaintingStylePage = () => {
         <div>
             <div>
               <h1>Choose the painting style of your album</h1>
-              <h4>Multiple responses are possible</h4>
+              <h4>Only one response is possible</h4>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-              {['impressionistic', 'surrealistic', 'pop art', 'realistic', 'cartoon-style', 'oil painting', 'watercolor painting'].map((PaintingStyle) => (
+              {['impressionistic', 'surrealistic', 'pop art', 'realistic', 'cartoon-style', 'oil painting', 'watercolor painting'].map((paintingstyle) => (
                 <Button2
-                  key={PaintingStyle}
-                  selected={selectedPaintingStyles.includes(PaintingStyle)}
-                  onClick={() => handlePaintingStyleClick(PaintingStyle)}
-                >
-                  {PaintingStyle}
+                  key={paintingstyle}
+                  selected={selectedPaintingStyle === paintingstyle}
+                  onClick={() => handlePaintingStyleClick(paintingstyle)}
+                  >
+                  {paintingstyle}
                 </Button2>
               ))}
             </div>

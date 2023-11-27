@@ -68,12 +68,10 @@ def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
     
 @router.post("/", status_code = status.HTTP_201_CREATED)
 def create_user(db: db_dependency, create_user_request: CreateUserRequest):
-    
-    # id(username) 중복 확인 코드
-    ''' check if the username already exists
-    if db.query(Users).filter(Users.username == create_user_request.username).first():
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail='Username already registered') '''
+
+    existing_user = db.query(Users).filter(Users.username == create_user_request.username).first()
+    if existing_user:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Username already registered")
     
     create_user_model = Users(
         username = create_user_request.username,
@@ -84,7 +82,7 @@ def create_user(db: db_dependency, create_user_request: CreateUserRequest):
     db.commit()
 
     # 엄소 수정 부분
-    return {"status":"success", "message": "User created succesfully"}
+    return {"detail":"success"}
 
 @router.post("/token", response_model = Token)
 def login_for_access_tokenn(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],

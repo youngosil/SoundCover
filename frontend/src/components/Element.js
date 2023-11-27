@@ -58,10 +58,11 @@ function Element({ listName, onListChange }) {
           onChange={(e) => handleInputChange(e, item.id)}
           style={{
             padding: '1rem',
-            width: '300px',
-            height: '10%',
+            width: '350px',
+            height: '70px',
             textAlign: 'center',
             transition: 'transform 300ms',
+            fontFamily: 'Montserrat'
           }}
         />
         <button

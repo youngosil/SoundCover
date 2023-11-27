@@ -10,16 +10,13 @@ function Elements() {
 
   // ElementList를 각각의 변수에 할당
   const [posElementList, setPosElementList] = useState([]);
-  const [negElementList, setNegElementList] = useState([]);
 
   const handlePrompt = () => {
     console.log('Positive ElementList:', posElementList);
-    console.log('Negative ElementList:', negElementList);
-
+    
     const updatedData = {
       ...sharedData.data,
-      'Positive ElementList': posElementList,
-      'Negative ElementList': negElementList
+      'Selected Elements': posElementList ? [posElementList].join(', ') : '', // Use ', ' as a separator
     };
 
     updateSharedData(sharedData.message, updatedData);
@@ -42,10 +39,6 @@ function Elements() {
         <div>
           <h3>Include...</h3>
           <Element listName='PosElements' onListChange={setPosElementList} />
-        </div>
-        <div>
-          <h3>Exclude...</h3>
-          <Element listName='NegElements' onListChange={setNegElementList} />
         </div>
       </div>
       <div style={{ width: '100%', display: 'flex', alignItems:'center', }}>

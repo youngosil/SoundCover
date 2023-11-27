@@ -10,17 +10,14 @@ const Sentiments = () => {
 
   // SentimentList를 각각의 변수에 할당
   const [posSentimentList, setPosSentimentList] = useState([]);
-  const [negSentimentList, setNegSentimentList] = useState([]);
 
   const handlePrompt = async () => {
     try {
       console.log('Positive SentimentList:', posSentimentList);
-      console.log('Negative SentimentList:', negSentimentList);
   
       const updatedData = {
         ...sharedData.data,
-        'Positive SentimentList': posSentimentList,
-        'Negative SentimentList': negSentimentList,
+        'Selected Sentiments': posSentimentList ? [posSentimentList].join(', ') : '', // Use ', ' as a separator
       };
   
       updateSharedData(sharedData.message, updatedData);
@@ -34,13 +31,12 @@ const Sentiments = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          genre: updateSharedData.selectedGenres,
-          trendingon: updateSharedData.selectedImagesKeywords,
-          style: updateSharedData.selectedPaintingStyles,
+          title: updateSharedData.Title,
+          singer: updateSharedData.Singer,          
+          genre: updateSharedData.selectedGenre,
+          style: updateSharedData.selectedPaintingStyle,
           positive_element: updateSharedData.PosElementList,
-          negative_element: updateSharedData.NegElementList,
           positive_sentiment: updateSharedData.posSentimentList,
-          negative_sentiment: updateSharedData.negSentimentList,
         }),
       });
   
@@ -72,10 +68,6 @@ const Sentiments = () => {
         <div>
           <h3>Include...</h3>
           <Element listName='PosSentiments' onListChange={setPosSentimentList} />
-        </div>
-        <div>
-          <h3>Exclude...</h3>
-          <Element listName='NegSentiments' onListChange={setNegSentimentList} />
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
