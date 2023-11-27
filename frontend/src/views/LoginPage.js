@@ -37,7 +37,7 @@ function LoginPage() {
         if (data.access_token) {
           console.log('Login successful:', data);
 
-          login({ username: ID});
+          login({ username: ID, token: data.access_token, token_type : "bearer"});
 
           // 로그인 후의 페이지로 이동
           setTimeout(() => {

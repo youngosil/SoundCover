@@ -1,6 +1,5 @@
 // Header.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 
@@ -16,16 +15,14 @@ const Header = () => {
   return (
     <div style={headerStyle}>
       <div style={logoStyle} onClick={() => navigate('/')}>
-        Ho
-      </div>
-      <div style={navStyle}>
-        <div onClick={() => navigate('/SelectPage')}>Select Page</div>
+        Home
       </div>
       <div style={userInfoStyle}>
         {user ? (
           <>
-            <span>{user.username}님</span>
-            <button onClick={handleLogout}>로그아웃</button>
+            <h3>{user.username}</h3>
+            <button style={{fontFamily:'Montserrat'}}
+                    onClick={handleLogout}>logout</button>
           </>
         ) : (
           <div onClick={() => navigate('/LoginPage')}>로그인</div>
@@ -40,8 +37,8 @@ const headerStyle = {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '10px',
-  backgroundColor: '#333',
   color: '#fff',
+  width: '100%'
 };
 
 const logoStyle = {
@@ -56,6 +53,7 @@ const navStyle = {
 const userInfoStyle = {
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'center',
   gap: '10px',
   cursor: 'pointer',
 };

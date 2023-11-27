@@ -13,17 +13,22 @@ const TitleSinger = () => {
 
   const handlePrompt = () => {
     console.log('Title:', Title);
-    console.log('Singer:', Singer)
+    console.log('Singer:', Singer);
+    console.log('print_title:',true);
+    console.log('print_singer:', true);
 
     const updatedData = {
       ...sharedData.data,'Title': Title|| '',
-      ...sharedData.data,'Singer': Singer|| ''
+      ...sharedData.data,'Singer': Singer|| '',
+      ...sharedData.data,'print_title': true|| '',
+      ...sharedData.data,'print_singer': true|| '',
+      ...sharedData.data,'url':'/administrator',
     };
 
     updateSharedData(sharedData.message, updatedData);
     
     setTimeout(() => {
-      navigate('/Elements');
+      navigate('/GenrePage');
     }, 500);
   };
 

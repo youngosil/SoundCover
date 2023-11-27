@@ -47,6 +47,7 @@ def read_cover(user: user_dependency, db: db_dependency, cover_id: int = Path(gt
 
 @router.post("/cover", status_code = status.HTTP_201_CREATED)
 def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverRequest):
+    print("Received data from client:", cover_request.model_dump())
     if user is None:
         raise HTTPException(status_code = 401, detail = "Authentication Failed!!")
     #  모델 넣기 --------------------------------------------------------------------------------------------------------------------------------------
@@ -70,7 +71,7 @@ def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverR
 
     print(prompt_message)
     # 이미지 생성하기 REST API 호출
-    response = client.images.generate(
+    '''response = client.images.generate(
     model="dall-e-3",
     prompt = prompt_message,
     size="1024x1024",
@@ -83,7 +84,7 @@ def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverR
     cover_request.url = image_url
     cover_model = Cover(**cover_request.model_dump(), owner_id = user.get("id"))
     db.add(cover_model)
-    db.commit()
+    db.commit()'''
 
 
 @router.delete("/cover/{cover_id}", status_code = status.HTTP_204_NO_CONTENT)
