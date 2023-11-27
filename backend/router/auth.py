@@ -10,6 +10,7 @@ from typing_extensions import Annotated
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import jwt, JWTError
 from datetime import timedelta
+from starlette import status
 
 router = APIRouter(
     prefix = "/auth",
@@ -68,21 +69,15 @@ def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
     
 @router.post("/", status_code = status.HTTP_201_CREATED)
 def create_user(db: db_dependency, create_user_request: CreateUserRequest):
-
     existing_user = db.query(Users).filter(Users.username == create_user_request.username).first()
     if existing_user:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Username already registered")
-    
     create_user_model = Users(
         username = create_user_request.username,
         hashed_password = bcrypt_context.hash(create_user_request.password)
     ) 
-    
     db.add(create_user_model)
     db.commit()
-
-    # 엄소 수정 부분
-    return {"detail":"success"}
 
 @router.post("/token", response_model = Token)
 def login_for_access_tokenn(form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
@@ -92,4 +87,4 @@ def login_for_access_tokenn(form_data: Annotated[OAuth2PasswordRequestForm, Depe
         raise HTTPException(status_code = status.HTTP_401_UNAUTHORIZED,
                             detail = "Could not validate user")
     token = create_access_token(user.username, user.id, timedelta(minutes = 20))
-    return {'access_token': token, "token_type" : "bearer" }
+    return {'access_token': token, "token_type" : "bearer"}
