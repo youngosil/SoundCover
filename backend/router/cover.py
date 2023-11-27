@@ -31,11 +31,11 @@ class CoverRequest(BaseModel):
     positive_sentiment: str 
     url: str
 
-@router.get("/myalbum")
+@router.get("/myalbum") # 전체 다 불러오는거
 def read_all(user: user_dependency, db: db_dependency):
     return db.query(Cover).filter(Cover.owner_id == user.get("id")).all()
 
-@router.get("/myalbum/{cover_id}", status_code = status.HTTP_200_OK)
+@router.get("/myalbum/{cover_id}", status_code = status.HTTP_200_OK) # 아이디별로 불러오는거
 def read_cover(user: user_dependency, db: db_dependency, cover_id: int = Path(gt = 0)):
     if user is None:
         raise HTTPException(status_code = 401, detail = "Authentication Failed!!")
@@ -81,10 +81,13 @@ def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverR
     image_url = response.data[0].url
 
     # 응답의 첫 번째 이미지 생성 결과 출력하기
-    cover_request.url = image_url
+    cover_request.url = image_url'''
+    cover_request.url = 'https://images.chosun.com/resizer/JbZM4riv1IBOvwyiMYnzcCqoIKc=/530x692/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/U7KJOSH3WOGYRXKN7ODFFRWYBM.jpg'
     cover_model = Cover(**cover_request.model_dump(), owner_id = user.get("id"))
     db.add(cover_model)
-    db.commit()'''
+    db.commit()
+
+    return {'url':cover_request.url}
 
 
 @router.delete("/cover/{cover_id}", status_code = status.HTTP_204_NO_CONTENT)

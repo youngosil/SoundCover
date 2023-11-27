@@ -1,47 +1,41 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useUser } from '../contexts/UserContext';
+import { useParams } from 'react-router-dom';
 
 function ExtractedAlbumsPage() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const { result } = useParams();
+  const { user } = useUser();
+  const [hovered, setHovered] = useState(false);
 
-  const handleMouseEnter = (index) => {
-    setHoveredIndex(index);
+  const handleMouseEnter = () => {
+    setHovered(true);
   };
 
   const handleMouseLeave = () => {
-    setHoveredIndex(null);
+    setHovered(false);
   };
 
   const containerStyle = {
     textAlign: 'center',
     transition: 'transform 0.3s ease',
+    transform: hovered ? 'scale(1.1)' : 'scale(1)',
   };
-
-  const imageStyle = (index) => ({
-    width: hoveredIndex === index ? '120px' : '100px',
-    height: hoveredIndex === index ? '120px' : '100px',
-    margin: '5px',
-  });
-
-  // 백엔드에서 이미지 + 설명글 불러와야함
-  const imageNames = ['image1.png','image2.png','image3.png'];
 
   return (
     <div>
       <div 
-          style={{textAlign: 'center', color: '#C7FCEB', fontWeight: 'bold', fontSize: '1.5rem'}}>000님,</div><br/>
-      <div>작성해주신 정보를 통해 만든 3개의 앨범 커버입니다.</div><br/>
+        style={{ textAlign: 'center', color: '#C7FCEB', fontWeight: 'bold', fontSize: '1.5rem' }}>
+        {user.username}
+      </div>
+      <br />
+      <h1>Finally, we made your album!</h1>
       <div style={containerStyle}>
-        {imageNames.map((imageName, index) => (
           <img
-            key={index}
-            src={`/images/${imageName}`} // 이미지 경로 설정
-            alt={`Album ${index + 1}`}
-            style={imageStyle(index)}
-            onMouseEnter={() => handleMouseEnter(index)}
+            src={result.url} // 이미지 URL로 설정
+            alt='Album Cover'
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           />
-        ))}
       </div>
     </div>
   );

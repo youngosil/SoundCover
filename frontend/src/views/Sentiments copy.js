@@ -28,7 +28,7 @@ const Sentiments = () => {
   
       updateSharedData(sharedData.message, updatedData);
   
-      {/*setTimeout(() => {
+      setTimeout(() => {
         console.log('updated Data:', updatedData);
       }, 500);
 
@@ -36,7 +36,7 @@ const Sentiments = () => {
         console.log('Shared Data:', sharedData);
       }, 500);
 
-      console.log('title:', sharedData.data.Title);
+      {/*console.log('title:', sharedData.data.Title);
       console.log('singer:', updatedData.data.Singer);
       console.log('selectedGenre:', updatedData.data.selectedGenre);
       console.log('print_title:', updatedData.data.print_title);
@@ -64,9 +64,9 @@ const Sentiments = () => {
   
       if (response.ok) {
         const result = await response.json();
-        console.log('Data successfully sent to the server.',result);
+        console.log('Data successfully sent to the server.');
         setTimeout(() => {
-          navigate('/ExtractedAlbumsPage');
+          navigate(`/ExtractedAlbumsPage/${result}`);
         }, 5000);
       } else {
         console.error('Failed to send data to the server.');
@@ -86,11 +86,9 @@ const Sentiments = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {/* Loading screen */}
-      {/* 로딩이 true일 때 구현되는 코드*/}
-      {loading && <div style={{ fontSize: '20px', textAlign: 'center', marginTop: '20px' }}>Loading...</div>}
+      {loading && <div style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</div>}
   
       {/* Main content */}
-      {/* 로딩이 false일 때 구현되는 코드*/}
       {!loading && (
         <React.Fragment>
           <h1>Additionally</h1>
