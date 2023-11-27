@@ -17,14 +17,16 @@ function SelectPage() {
     }, 500)};
 
   return (
-    <div style ={{ display: 'flex', alignItems: 'center'}}>
+    <div>
       <Header />
-      <Button2 onClick={goToMyAlbums} style={{ width: '300px', height: '300px', margin: '5rem', fontWeight: '700', fontSize: '20px' }}>
-        My albums
-      </Button2>
-      <Button2 onClick={goToTitleSinger} style={{ width: '300px', height: '300px', margin: '5rem', fontWeight: '700', fontSize: '20px' }}>
-          Make a new album
-      </Button2>
+      <div style ={{ display: 'flex', alignItems: 'center'}}>
+        <Button2 onClick={goToMyAlbums} style={{ width: '300px', height: '300px', margin: '5rem', fontWeight: '700', fontSize: '20px' }}>
+          My albums
+        </Button2>
+        <Button2 onClick={goToTitleSinger} style={{ width: '300px', height: '300px', margin: '5rem', fontWeight: '700', fontSize: '20px' }}>
+            Make a new album
+        </Button2>
+      </div>
     </div>
   );
 }

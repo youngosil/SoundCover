@@ -43,13 +43,13 @@ function SignupPage() {
           console.error(error.message);
           setShowErrorPopup(true);
           // 페이지 새로 고침
-          window.location.reload();
+          //window.location.reload();
         });
     } catch (error) {
       // 실패한 경우에 대한 처리
       console.error(error.message);
       // 페이지 새로 고침
-      window.location.reload();
+      //window.location.reload();
     }
   };
 
