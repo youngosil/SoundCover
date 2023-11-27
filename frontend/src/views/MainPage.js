@@ -1,8 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
-import '../Mainpage.css';
+import '../styles/MainPage.css';
 import { useNavigate } from 'react-router-dom';
 import Button1 from '../components/Button1';
-import {gsap, Power0} from 'gsap'
 
 const MainPage = () => {
     const navigate = useNavigate();
@@ -12,28 +11,28 @@ const MainPage = () => {
     };
     
     /* 애니메이션 구현 */
-    const trendImagesRef = useRef([]);
+    //const trendImagesRef = useRef([]);
 
     return (
         // 웹 사이트 소개 
         // 상단 이미지 구성
-        <div style={{position: 'relative', marginTop: '70%', marginBottom: '30px', marginLeft: '100px'}}>
-            <img src="images/albums.png" style={{ width: '1000px', height: '300px'}} alt="Albums" />
-            <img src="images/headphone.png" style={{ width: '158px', height: '137px', position: 'relative', top: '-200px', left: '-200px' }} alt="Headphones" />
-            <img src="images/cardset.png" style={{ width: '180px', height: '200px', position: 'relative', top: '-400px', left: '-10px'  }} alt="Card Set" />
-            <img src="images/horse.png" style={{ width: '150px', height: '169px', position: 'relative', top: '-120px' }} alt="Horse" />
-            <img src="images/cd.png" style={{ width: '125px', height: '133px', position: 'relative', top: '-480px' }} alt="CD" />
-            <img src="images/jellyfish.png" style={{ width: '200px', height: '270px', position: 'relative', top: '-100px', left: '250px' }} alt="Jellyfish" />
-                <h2>Welcome to SOUNDCOVER</h2>
-                <h3>You can make your own album cover using AI model. 
-                    Just give us your description of your album!</h3>
-
-            <div style={{marginTop: '60px', marginBottom: '60px'}}>
-                <Button1 onClick={goToLoginPage}>Make Album Cover</Button1>
+        <div style={{position: 'relative', margin: '10%', maxWidth: '1200px', margin: 'auto'}}>
+            <div style={{width: '100%', marginTop: '100%'}}>
+                <img src="images/mainpage_cover_image.png" style={{ width: '100%', height: '100%'}} alt="Albums" />
+                <div style={{margin: '100px'}}>
+                    <h2 style={{fontSize: '2rem', display: 'flex', justifyContent: 'center'}}>Welcome to SOUNDCOVER</h2>
+                    <h3 style={{fontSize: '1rem', display: 'flex', justifyContent: 'center'}}> 
+                        You can make your own album cover using AI model.<br/>
+                        Just give us your description of your album!
+                    </h3>
+                </div>
+            </div>
+            <div style={{marginTop: '60px', marginBottom: '60px', display: 'flex', justifyContent: 'center'}}>
+                <Button1 onClick={goToLoginPage} style={{width: '500px'}}>Make Album Cover</Button1>
             </div>
 
             {/* 하단 앨범 이미지 구성 및 애니메이션*/}
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
             {[62, 811, 63, 91, 211, 92].map((index) => (
             <img
                 key={index}
@@ -43,7 +42,7 @@ const MainPage = () => {
             />
             ))}
             </div>
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
             {[61, 241, 31, 391, 122, 93].map((index) => (
             <img
                 key={index}
@@ -54,7 +53,7 @@ const MainPage = () => {
             ))}
             </div>
 
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
             {[5541, 721, 242, 273, 333, 543].map((index) => (
             <img
                 key={index}

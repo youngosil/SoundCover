@@ -1,41 +1,60 @@
-import React, {useState, useRef, useEffect} from 'react';
-import '../Mainpage.css';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
+
 const PaintingStylePage = () => {
+  const { sharedData, updateSharedData } = usePromptContext();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [selectedPaintingStyle, setSelectedPaintingStyle] = useState('');
 
-    const handlePrompt = () => {
-        //console.log('Prompt1:', Prompt1);
+  const handlePaintingStyleClick = (paintingstyle) => {
+    // Toggle the selection of the PaintingStyle
+    const updatedPaintingStyle = selectedPaintingStyle === paintingstyle ? '' : paintingstyle;
+
+    setSelectedPaintingStyle(updatedPaintingStyle);
+  };
+
+
+  const handlePrompt = () => {
+    console.log('Selected Painting Style:', selectedPaintingStyle);
+
+    const updatedData = {
+      ...sharedData.data,
+      'Selected PaintingStyle': selectedPaintingStyle || '',
+    };
+
+    updateSharedData(sharedData.message, updatedData);
     
-        setTimeout(() => {
-          navigate('/PromptPage3');
-        }, 500);
-      };
+    setTimeout(() => {
+      navigate('/Elements');
+    }, 500);
+  };
 
-    const backtoPreviousPage = () => {
-        setTimeout(() => {
-          navigate('/GenrePage');
-        }, 500)
-      };
+  const backtoPreviousPage = () => {
+    setTimeout(() => {
+      navigate('/GenrePage');
+    }, 500)
+  };
 
-    return (
+  return (
         <div>
             <div>
-                <h2>Choose your PaintingStyle</h2>
+              <h1>Choose the painting style of your album</h1>
+              <h4>Only one response is possible</h4>
             </div>
-            <div>
-                <Button2>Realism</Button2>
-                <Button2>Painterly</Button2>
-                <Button2>Impressionism</Button2>
-                <Button2>Expressionism and Fauvism</Button2>
-            </div>
-            <div>
-                <Button2>Abstraction</Button2>
-                <Button2>Abstract</Button2>
-                <Button2>Photorealism</Button2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {['impressionistic', 'surrealistic', 'pop art', 'realistic', 'cartoon-style', 'oil painting', 'watercolor painting'].map((paintingstyle) => (
+                <Button2
+                  key={paintingstyle}
+                  selected={selectedPaintingStyle === paintingstyle}
+                  onClick={() => handlePaintingStyleClick(paintingstyle)}
+                  >
+                  {paintingstyle}
+                </Button2>
+              ))}
             </div>
             <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button1 onClick={backtoPreviousPage}>&#171;&#171; 

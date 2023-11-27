@@ -1,49 +1,68 @@
-import React, {useState, useRef, useEffect} from 'react';
-import '../Mainpage.css';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
 
 const GenrePage = () => {
+  const { sharedData, updateSharedData } = usePromptContext();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [selectedGenre, setSelectedGenre] = useState('');
 
-    const handlePrompt = () => {
-        //console.log('Prompt1:', Prompt1);
+  const handleGenreClick = (genre) => {
+    // Toggle the selection of the genre
+    const updatedGenre = selectedGenre === genre ? '' : genre;
+
+    setSelectedGenre(updatedGenre);
+  };
+
+  const handlePrompt = () => {
+    // Send selected genre to the backend
+    console.log('Selected Genre:', selectedGenre);
+
+    const updatedData = {
+      ...sharedData.data,
+      'Selected Genre': selectedGenre || '', // Store as an empty string if not selected
+    };
     
-        setTimeout(() => {
-          navigate('/PaintingStylePage');
-        }, 500);
-      };
+    updateSharedData(sharedData.message, updatedData);
 
-    return (
-        <div>
-            <div>
-                <h2>Choose your Genre</h2>
-            </div>
-            <div>
-                    <Button2>K-pop</Button2>
-                    <Button2>Rock</Button2>
-                    <Button2>Ballad</Button2>
-                    <Button2>Hip Hop</Button2>
-                    <Button2>R&B</Button2>
-            </div>
-            <div>
-                    <Button2>K-pop</Button2>
-                    <Button2>Rock</Button2>
-                    <Button2>Ballad</Button2>
-                    <Button2>Hip Hop</Button2>
-                    <Button2>R&B</Button2>
-            </div>
-            <div>
-                <Button1 onClick={handlePrompt}>
-                    다음으로 넘어가기 &#187;&#187; 
-                </Button1>
-            </div>
-        </div>
-    )
+    // Redirect to the next page after some delay
+    setTimeout(() => {
+      navigate('/PaintingStylePage');
+    }, 500);
+  };
 
+  const backtoPreviousPage = () => {
+    setTimeout(() => {
+      navigate('/TitleSinger');
+    }, 500)
+  };
 
-}
+  return (
+    <div>
+      <div>
+        <h1>Choose the genre of your album</h1>
+        <h4>Only one response is possible</h4>
+      </div>
+      <div>
+        {['Pop', 'Rock', 'Punk', 'Hip-Hop', 'Jazz', 'Folk'].map((genre) => (
+          <Button2
+            key={genre}
+            selected={selectedGenre === genre}
+            onClick={() => handleGenreClick(genre)}
+          >
+            {genre}
+          </Button2>
+        ))}
+      </div>
+      <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
+        <Button1 onClick={backtoPreviousPage}>&#171;&#171; 이전으로 돌아가기</Button1>
+        <Button1 onClick={handlePrompt} style = {{ marginLeft: '3rem' }}>다음으로 넘어가기 &#187;&#187;</Button1>
+      </div>
+    </div>
+  );
+};
 
 export default GenrePage;

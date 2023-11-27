@@ -54,7 +54,7 @@ def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverR
         raise HTTPException(status_code = 401, detail = "Authentication Failed!!")
     
     # [내 애플리케이션] > [앱 키] 에서 확인한 REST API 키 값 입력
-    REST_API_KEY = 'b6b41949c283895dd394ff72ca61f59c'
+    REST_API_KEY = '45fa999ca06e105351f0c3941a4fb658'
 
     # 이미지 생성하기 요청
     def t2i(prompt, negative_prompt):
