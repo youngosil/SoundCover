@@ -12,11 +12,11 @@ function Elements() {
   const [posElementList, setPosElementList] = useState([]);
 
   const handlePrompt = () => {
-    console.log('Positive ElementList:', posElementList);
+    console.log('posElementList:', posElementList);
     
     const updatedData = {
       ...sharedData.data,
-      'Selected Elements': posElementList ? [posElementList].join(', ') : '', // Use ', ' as a separator
+      'posElementList': posElementList ? [posElementList].join(', ') : '', // Use ', ' as a separator
     };
 
     updateSharedData(sharedData.message, updatedData);
