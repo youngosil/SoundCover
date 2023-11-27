@@ -1,38 +1,47 @@
 import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
+
 const PaintingStylePage = () => {
+  const { sharedData, updateSharedData } = usePromptContext();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [selectedPaintingStyles, setSelectedPaintingStyles] = useState([]);
 
-    const [selectedPaintingStyles, setSelectedPaintingStyles] = useState([]);
-
-    const handlePaintingStyleClick = (PaintingStyle) => {
-      // Toggle the selection of the PaintingStyle
-      const updatedPaintingStyles = selectedPaintingStyles.includes(PaintingStyle)
-        ? selectedPaintingStyles.filter((selectedPaintingStyle) => selectedPaintingStyle !== PaintingStyle)
-        : [...selectedPaintingStyles, PaintingStyle];
+  const handlePaintingStyleClick = (PaintingStyle) => {
+    // Toggle the selection of the PaintingStyle
+    const updatedPaintingStyles = selectedPaintingStyles.includes(PaintingStyle)
+      ? selectedPaintingStyles.filter((selectedPaintingStyle) => selectedPaintingStyle !== PaintingStyle)
+      : [...selectedPaintingStyles, PaintingStyle];
   
-      setSelectedPaintingStyles(updatedPaintingStyles);
+    setSelectedPaintingStyles(updatedPaintingStyles);
+  };
+
+
+  const handlePrompt = () => {
+    console.log('Selected Painting Styles', selectedPaintingStyles);
+
+    const updatedData = {
+      ...sharedData.data,
+      'Selected Painting Styles': selectedPaintingStyles,
     };
 
-
-    const handlePrompt = () => {
-      console.log('Selected Painting Styles', selectedPaintingStyles);
+    updateSharedData(sharedData.message, updatedData);
     
-      setTimeout(() => {
-        navigate('/Elements');
-      }, 500);
-    };
+    setTimeout(() => {
+      navigate('/TrendingOn');
+    }, 500);
+  };
 
-    const backtoPreviousPage = () => {
-      setTimeout(() => {
-        navigate('/GenrePage');
-      }, 500)
-    };
+  const backtoPreviousPage = () => {
+    setTimeout(() => {
+      navigate('/GenrePage');
+    }, 500)
+  };
 
-    return (
+  return (
         <div>
             <div>
               <h1>Choose the painting style of your album</h1>

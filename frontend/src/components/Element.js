@@ -10,7 +10,7 @@ function Element({ listName, onListChange }) {
     const elementList = items
       .filter((item) => item.confirmed && item.value)
       .map((item) => item.value);
-    console.log(`${listName}:`, elementList);
+    //console.log(`${listName}:`, elementList);
 
     // 부모 컴포넌트로 리스트 전달
     onListChange(elementList);

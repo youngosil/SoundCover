@@ -33,7 +33,7 @@ function LandingPage() {
         <h2 style={{ fontSize: '5rem' }}>{text}</h2>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button1 style={{ width: '10rem' }} onClick={goToMainpage}>시작하기</Button1>
+        <Button1 style={{ width: '10rem', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px'}} onClick={goToMainpage}>Start</Button1>
       </div>
     </div>
   );

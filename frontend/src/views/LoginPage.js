@@ -5,6 +5,7 @@ import Button1 from '../components/Button1';
 function LoginPage() {
   const [ID, setID] = useState('');
   const [PW, setPW] = useState('');
+  const [showErrorPopup, setShowErrorPopup] = useState(false); // 에러 여부 결정
   
   const navigate = useNavigate();
   const goToSignupPage = () => {
@@ -41,6 +42,7 @@ function LoginPage() {
       } else {
         // 응답이 실패했을 때의 로직
         console.error('Login failed:', response.status);
+        setShowErrorPopup(true);
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -48,29 +50,33 @@ function LoginPage() {
   };
 
   return (
-    <div style={{ width: '100%', margin: '0' }}>
+    <div style={{ width: '100%', margin: '0'}}>
       <div style={{ width: '100%', margin: '1rem auto'}}>
-        <label>
-          반갑습니다.<br />
-          SOUNDCOVER 입니다.<br /><br />
-        </label>
-        <div style={{ display: 'flex', flexDirection: 'column'}}>
+        <h1>Sign In</h1>
+        <div style={{ width: '250px', display: 'flex', flexDirection: 'column', fontFamily: 'Montserrat'}}>
           <input
             name="ID"
-            placeholder="아이디를 입력해주세요"
+            placeholder="Please enter your ID"
             value={ID}
             onChange={(e) => setID(e.target.value)}
-            style={{ padding: '1rem', marginTop: '0.5rem' }}
+            style={{padding: '1rem', marginTop: '0.5rem', fontFamily:'Montserrat' }}
           />
           <input
             name="PW"
-            placeholder="비밀번호를 입력해주세요."
+            placeholder="Please enter your password"
             value={PW}
             onChange={(e) => setPW(e.target.value)}
-            style={{ padding: '1rem', marginTop: '0.5rem' }}
+            style={{ padding: '1rem', marginTop: '0.5rem', fontFamily:'Montserrat' }}
           />
-          <Button1 onClick={handleLogin}>로그인</Button1>
-          <Button1 onClick={goToSignupPage} style={{ backgroundColor: 'black', color: '#C7FCEB' }}>회원가입</Button1>
+          <Button1 onClick={handleLogin}>Sign In</Button1>
+          <Button1 onClick={goToSignupPage} style={{ backgroundColor: 'black', color: '#C7FCEB' }}>Sign Up</Button1>
+
+          {/* 실패 시 에러 팝업*/}
+          {showErrorPopup && (
+            <h4 style={{ marginTop: '1rem', color: 'red', fontFamily:'Montserrat', textAlign:'center'}}>
+              ID or password is not valid.
+            </h4>
+          )}
         </div>
       </div>
     </div>

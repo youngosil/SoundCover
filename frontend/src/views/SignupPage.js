@@ -49,7 +49,7 @@ function SignupPage() {
     
 
   return (
-    <div style={{ width: '100%', margin: '0' }}>
+    <div style={{ width: '100%', margin: '0', fontFamily: 'Montserrat'}}>
       <div style={{ width: '100%', margin: '1rem auto'}}>
         {/*<label>
           닉네임 :  
@@ -66,20 +66,21 @@ function SignupPage() {
           ID :   
           <input
             name="NewID"
-            placeholder='사용하고자 하는 아이디를 입력해주세요.'
+            placeholder='Enter your ID'
             value={NewID}
             onChange={(e) => setNewID(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem'}}
           />
           <Button1 
-            style={{ width: '100px',marginLeft: '1rem', padding: '0.7rem', marginTop: '0.5rem', marginBottom: '1rem'}}>중복확인</Button1><br/>
+            style={{ width: '150px',marginLeft: '1rem', padding: '0.7rem', marginTop: '0.5rem', marginBottom: '1rem'}}>Check duplication
+            </Button1><br/>
         </label>
 
         <label>
           PW : 
           <input
             name="NewPW"
-            placeholder='4자리 비밀번호를 입력해주세요.'
+            placeholder='Enter your password'
             value={NewPW}
             onChange={(e) => setNewPW(e.target.value)}
             style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem'}}
@@ -88,7 +89,7 @@ function SignupPage() {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Button1 onClick={handleSignup}>회원가입하기</Button1>
+        <Button1 onClick={handleSignup}>Sign Up</Button1>
       </div>
     </div>
   );

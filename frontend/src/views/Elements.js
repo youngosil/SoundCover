@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Element from '../components/Element.js';
 
-function YourMainComponent() {
+function Elements() {
+  const { sharedData, updateSharedData } = usePromptContext();
   const navigate = useNavigate();
 
   // ElementList를 각각의 변수에 할당
@@ -13,6 +15,14 @@ function YourMainComponent() {
   const handlePrompt = () => {
     console.log('Positive ElementList:', posElementList);
     console.log('Negative ElementList:', negElementList);
+
+    const updatedData = {
+      ...sharedData.data,
+      'Positive ElementList': posElementList,
+      'Negative ElementList': negElementList
+    };
+
+    updateSharedData(sharedData.message, updatedData);
 
     setTimeout(() => {
       navigate('/Sentiments');
@@ -38,7 +48,7 @@ function YourMainComponent() {
           <Element listName='NegElements' onListChange={setNegElementList} />
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ width: '100%', display: 'flex', alignItems:'center', }}>
         <Button1 onClick={backtoPreviousPage}>&#171;&#171; 이전으로 돌아가기</Button1>
         <Button1 onClick={handlePrompt} style={{ marginLeft: '3rem' }}>
           다음으로 넘어가기 &#187;&#187;
@@ -48,7 +58,7 @@ function YourMainComponent() {
   );
 }
 
-export default YourMainComponent;
+export default Elements;
 
 
 

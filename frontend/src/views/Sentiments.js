@@ -1,23 +1,65 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePromptContext } from '../contexts/PromptContext.js';
 import Button1 from '../components/Button1';
 import Element from '../components/Element.js';
 
-function YourMainComponent() {
+const Sentiments = () => {
+  const { sharedData, updateSharedData } = usePromptContext();
   const navigate = useNavigate();
 
   // SentimentList를 각각의 변수에 할당
   const [posSentimentList, setPosSentimentList] = useState([]);
   const [negSentimentList, setNegSentimentList] = useState([]);
 
-  const handlePrompt = () => {
-    console.log('Positive SentimentList:', posSentimentList);
-    console.log('Negative SentimentList:', negSentimentList);
-
-    setTimeout(() => {
-      navigate('/ExtractedAlbumsPage');
-    }, 500);
+  const handlePrompt = async () => {
+    try {
+      console.log('Positive SentimentList:', posSentimentList);
+      console.log('Negative SentimentList:', negSentimentList);
+  
+      const updatedData = {
+        ...sharedData.data,
+        'Positive SentimentList': posSentimentList,
+        'Negative SentimentList': negSentimentList,
+      };
+  
+      updateSharedData(sharedData.message, updatedData);
+  
+      console.log('Shared Data:', updatedData);
+  
+      // 백엔드로 데이터 전송
+      const response = await fetch('http://127.0.0.1:8000/cover/cover', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          genre: selectedGenres,
+          trendingon: selectedImages.map((selectedImage) => selectedImage.site),
+          style: selectedPaintingStyles,
+          positive_element: PosElementList,
+          negative_element: NegElementList,
+          positive_sentiment: posSentimentList,
+          negative_sentiment: negSentimentList,
+        }),
+      });
+  
+      if (response.ok) {
+        // 성공적으로 전송
+        console.log('Data successfully sent to the server.');
+      } else {
+        // 전송 실패 시 에러 처리
+        console.error('Failed to send data to the server.');
+      }
+  
+      setTimeout(() => {
+        navigate('/ExtractedAlbumsPage');
+      }, 500);
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
   };
+  
 
   const backtoPreviousPage = () => {
     setTimeout(() => {
@@ -41,14 +83,14 @@ function YourMainComponent() {
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button1 onClick={backtoPreviousPage}>&#171;&#171; 이전으로 돌아가기</Button1>
         <Button1 onClick={handlePrompt} style={{ marginLeft: '3rem' }}>
-          다음으로 넘어가기 &#187;&#187;
+          나만의 앨범 만들기 &#187;&#187;
         </Button1>
       </div>
     </div>
   );
-}
+};
 
-export default YourMainComponent;
+export default Sentiments;
 
 
 

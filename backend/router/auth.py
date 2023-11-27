@@ -95,9 +95,3 @@ def login_for_access_tokenn(form_data: Annotated[OAuth2PasswordRequestForm, Depe
                             detail = "Could not validate user")
     token = create_access_token(user.username, user.id, timedelta(minutes = 20))
     return {'access_token': token, "token_type" : "bearer" }
-
-# 엄소 수정 부분
-@router.get("/get_user_data")
-def get_user_data(db: Session = Depends(get_db)):
-    user = get_current_user(db)
-    return {"user_id": user['id'], "username": user['username']}

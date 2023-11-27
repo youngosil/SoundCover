@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { usePromptContext} from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
 
 const GenrePage = () => {
+  const { sharedData, updateSharedData } =usePromptContext();
   const navigate = useNavigate();
 
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -20,6 +22,13 @@ const GenrePage = () => {
   const handlePrompt = () => {
     // Send selected genres to the backend
     console.log('Selected Genres:', selectedGenres);
+    
+    const updatedData = {
+      ...sharedData.data,
+      'Selected Genres': selectedGenres,
+    };
+
+    updateSharedData(sharedData.message, updatedData);
 
     // Redirect to the next page after some delay
     setTimeout(() => {
