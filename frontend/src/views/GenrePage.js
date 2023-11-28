@@ -60,8 +60,8 @@ const GenrePage = () => {
         ))}
       </div>
       <div style = {{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button1 onClick={backtoPreviousPage}>&#171;&#171; 이전으로 돌아가기</Button1>
-        <Button1 onClick={handlePrompt} style = {{ marginLeft: '3rem' }}>다음으로 넘어가기 &#187;&#187;</Button1>
+        <Button1 onClick={backtoPreviousPage}>&#171;&#171; Previous page</Button1>
+        <Button1 onClick={handlePrompt} style = {{ marginLeft: '3rem' }}>Next page &#187;&#187;</Button1>
       </div>
     </div>
   );

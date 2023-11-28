@@ -55,8 +55,9 @@ function SignupPage() {
 
 
   return (
-    <div style={{ width: '100%', margin: '0', fontFamily: 'Montserrat'}}>
-      <div style={{ width: '100%', margin: '1rem auto'}}>
+    <div style={{ width: '100%', margin: '0'}}>
+      <div style={{ width: '100%', margin: '1rem auto', fontFamily:'Montserrat'}}>
+      <h1 style={{fontFamily:'Nephilm'}}>Sign up</h1>
         {/*<label>
           닉네임 :  
           <input
@@ -68,14 +69,14 @@ function SignupPage() {
           /><br />
         </label>*/}
 
-        <label style={{ display: 'flex', alignItems: 'center' }}>
+        <label style={{ display: 'flex', alignItems: 'center'}}>
           ID :   
           <input
             name="NewID"
             placeholder='Enter your ID'
             value={NewID}
             onChange={(e) => setNewID(e.target.value)}
-            style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem', fontFamily: 'Montserrat'}}
+            style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem',fontFamily:'Montserrat'}}
           />
           <Button1 
             style={{ width: '150px',marginLeft: '1rem', padding: '0.7rem', marginTop: '0.5rem', marginBottom: '1rem'}}>Check duplication
@@ -89,7 +90,7 @@ function SignupPage() {
             placeholder='Enter your password'
             value={NewPW}
             onChange={(e) => setNewPW(e.target.value)}
-            style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem', fontFamily: 'Montserrat'}}
+            style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1rem', marginBottom: '1rem', width: '20rem',fontFamily:'Montserrat'}}
           />
         </label>
       </div>
@@ -100,8 +101,8 @@ function SignupPage() {
 
       {/* 실패 시 에러 팝업*/}
       {showErrorPopup && (
-        <h4 style={{ marginTop: '1rem', color: 'red', fontFamily:'Montserrat', textAlign:'center'}}>
-          ID or password is not valid.
+        <h4 style={{ marginTop: '1rem', color: 'red', fontFamily:'Nephilm', textAlign:'center'}}>
+          Already a registered member
         </h4>
       )}
 
