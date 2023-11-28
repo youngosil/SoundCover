@@ -1,2 +1,7 @@
-/router/__pycache__
-/router/cover.py
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore router specific files
+router/__pycache__/
+router/cover.py

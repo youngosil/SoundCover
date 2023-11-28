@@ -57,7 +57,6 @@ function Element({ listName, onListChange }) {
           value={item.value}
           onChange={(e) => handleInputChange(e, item.id)}
           style={{
-            padding: '1rem',
             width: '350px',
             height: '70px',
             textAlign: 'center',
@@ -66,18 +65,22 @@ function Element({ listName, onListChange }) {
           }}
         />
         <button
-          style={{ width: '30px', backgroundColor: '#C7FCEB', color: 'black' }}
+          style={{ 
+            width: '30px', 
+            backgroundColor: '#C7FCEB', 
+            color: 'black',
+            width: '150px'}}
           className='remove-button'
           onClick={addItemHandler}
         >
-          +
+          Add more items
         </button>
         <button
           className='remove-button'
-          style={{ width: '30px', color: 'black' }}
+          style={{ width: '30px', color: 'black', width: '100px' }}
           onClick={() => removeItemHandler(item.id)}
         >
-          -
+          Remove
         </button>
         <button
           className='remove-button'

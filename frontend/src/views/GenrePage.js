@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
+import Header from '../components/Header';
 
 const GenrePage = () => {
   const { sharedData, updateSharedData } = usePromptContext();
@@ -42,6 +43,7 @@ const GenrePage = () => {
 
   return (
     <div>
+      <Header/>
       <div>
         <h1>Choose the genre of your album</h1>
         <h4>Only one response is possible</h4>

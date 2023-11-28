@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
 import Element from '../components/Element.js';
+import Header from '../components/Header';
 
 function Elements() {
   const { sharedData, updateSharedData } = usePromptContext();
@@ -33,7 +34,8 @@ function Elements() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div>
+      <Header/>
       <h1>On the cover of your album</h1>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>

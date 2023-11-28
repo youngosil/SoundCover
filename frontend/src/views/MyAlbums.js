@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../contexts/UserContext';
+import Header from '../components/Header';
 
 const MyAlbums = () => {
   const [albums, setAlbums] = useState([]);
@@ -33,6 +34,7 @@ const MyAlbums = () => {
 
   return (
     <div>
+      <Header />
       <h1>My albums</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {albums.map((album) => (

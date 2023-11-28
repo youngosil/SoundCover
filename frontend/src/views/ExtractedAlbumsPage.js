@@ -41,7 +41,7 @@ function ExtractedAlbumsPage() {
           alt='Album Cover'
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          style={{width:'50%',height:'50%'}}
+          style={{width:'400px',height:'400px'}}
         />
       </div>
     </div>
