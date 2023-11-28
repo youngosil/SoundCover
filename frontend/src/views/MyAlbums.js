@@ -1,44 +1,46 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button1 from '../components/Button1';
-import { containerStyle, labelStyle } from '../styles';
+import React, { useState, useEffect } from 'react';
+import { useUser } from '../contexts/UserContext';
 
-// database에 저장된 id별 데이터 가져와서 출력해야됨
+const MyAlbums = () => {
+  const [albums, setAlbums] = useState([]);
+  const { user } = useUser();
 
-function MyAlbums() {
-  const [Prompt1, setPrompt1] = useState('');
-  
-  const navigate = useNavigate();
+  useEffect(() => {
+    // 사용자의 앨범을 가져오기 위해 백엔드에 요청을 보냅니다.
+    fetchUserAlbums();
+  }, [user]); // user가 변경될 때마다 다시 불러옵니다.
 
-  const handlePrompt = () => {
-    console.log('Prompt1:', Prompt1);
+  const fetchUserAlbums = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/myalbum?owner_id=${user.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
 
-    setTimeout(() => {
-      navigate('/PromptPage2');
-    }, 500);
+      if (!response.ok) {
+        throw new Error('앨범을 가져오지 못했습니다.');
+      }
+
+      const data = await response.json();
+      setAlbums(data);
+    } catch (error) {
+      console.error('앨범을 가져오는 동안 오류가 발생했습니다:', error.message);
+    }
   };
 
   return (
-    <div style={containerStyle}> {/*style.js에 css처럼 기재*/}
-      <label style={labelStyle}>
-        000님,<br />
-      </label>
-      <label>
-        나만의 앨범임!!!!<br />
-      </label>
-      <input
-        name="Prompt1"
-        placeholder="(100자 이내로 입력해주세요.)"
-        value={Prompt1}
-        onChange={(e) => setPrompt1(e.target.value)}
-        style={{ padding: '1rem', marginTop: '2rem', width: '600px', height: '300px' }}
-      /><br />
-      <Button1 onClick={handlePrompt}>
-        다음으로 넘어가기 &#187;&#187; 
-      </Button1>
+    <div>
+      <h1>My albums</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {albums.map((album) => (
+          <img key={album.id} src={album.url} alt={`앨범 ${album.id}`} style={{ margin: '10px', width: '200px', height: '200px' }} />
+        ))}
+      </div>
     </div>
-
   );
-}
+};
 
 export default MyAlbums;
