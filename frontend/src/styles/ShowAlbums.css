@@ -1,0 +1,8 @@
+.image-container {
+  opacity: 0; /* 초기에 투명 상태로 시작 */
+}
+
+.image-container.fade-in {
+  opacity: 1;
+  animation: fadeIn ease-in-out 1s;
+}
