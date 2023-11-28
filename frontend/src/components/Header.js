@@ -20,12 +20,14 @@ const Header = () => {
       <div style={userInfoStyle}>
         {user ? (
           <>
-            <h3>{user.username}</h3>
-            <button style={{fontFamily:'Montserrat'}}
+            <h3>Hello, {user.username}</h3>
+            <button style={{ fontFamily: 'Nephilm', cursor: 'pointer',}}
                     onClick={handleLogout}>logout</button>
           </>
         ) : (
-          <div onClick={() => navigate('/LoginPage')}>로그인</div>
+          <div onClick={() => navigate('/LoginPage')}>
+            로그인
+          </div>
         )}
       </div>
     </div>
@@ -43,7 +45,9 @@ const headerStyle = {
 
 const logoStyle = {
   cursor: 'pointer',
+  fontSize: '1.5rem'
 };
+
 
 const navStyle = {
   display: 'flex',
@@ -55,7 +59,7 @@ const userInfoStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '10px',
-  cursor: 'pointer',
+  //cursor: 'pointer',
 };
 
 export default Header;

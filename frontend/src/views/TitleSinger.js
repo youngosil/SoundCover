@@ -40,20 +40,20 @@ const TitleSinger = () => {
                 <h1>What's your title ?</h1>
                 <input
                     name="Title"
-                    placeholder='Your album title'
+                    placeholder='( your album title )'
                     value={Title}
                     onChange={(e) => setTitle(e.target.value)}
-                    style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem'}}
+                    style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem', fontFamily: 'Montserrat'}}
                 />
             </label>
             <label style={{ display: 'flex', alignItems: 'center' }}>
                 <h1>What's your singer name ?</h1>
                 <input
                     name="Singer"
-                    placeholder='Your singer name'
+                    placeholder='( your singer name )'
                     value={Singer}
                     onChange={(e) => setSinger(e.target.value)}
-                    style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem'}}
+                    style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem', fontFamily: 'Montserrat'}}
                 />
             </label>
         </div>

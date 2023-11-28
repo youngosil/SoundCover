@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../contexts/UserContext';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Header from '../components/Header';
 
 function ExtractedAlbumsPage() {
-  const { result } = useParams();
   const { user } = useUser();
+  const location = useLocation();
+  const resultUrl = location.state?.resultUrl || ''; // Access resultUrl from location state
+
   const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+  }, [resultUrl]);
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -23,19 +29,20 @@ function ExtractedAlbumsPage() {
 
   return (
     <div>
-      <div 
-        style={{ textAlign: 'center', color: '#C7FCEB', fontWeight: 'bold', fontSize: '1.5rem' }}>
-        {user.username}
-      </div>
+      <Header />
       <br />
-      <h1>Finally, we made your album!</h1>
+      <h1 style={{textAlign:'center'}}>Finally, we made your album!<br/>
+      .<br/>
+      .<br/>
+      .<br/></h1>
       <div style={containerStyle}>
-          <img
-            src={result.url} // 이미지 URL로 설정
-            alt='Album Cover'
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          />
+        <img
+          src={resultUrl}
+          alt='Album Cover'
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          style={{width:'50%',height:'50%'}}
+        />
       </div>
     </div>
   );

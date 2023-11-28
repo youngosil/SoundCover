@@ -53,7 +53,8 @@ def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverR
     #  모델 넣기 --------------------------------------------------------------------------------------------------------------------------------------
     client = OpenAI(
         organization='org-VYoykBdywSgc0QN914YlynML',
-        api_key = "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"
+        api_key= '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'
+        # api_key = "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"
     )
 
     # ------------------------------------------------------------------------------------------------------------------------------------
@@ -82,7 +83,9 @@ def create_cover(user: user_dependency, db: db_dependency, cover_request: CoverR
 
     # 응답의 첫 번째 이미지 생성 결과 출력하기
     cover_request.url = image_url'''
+    
     cover_request.url = 'https://images.chosun.com/resizer/JbZM4riv1IBOvwyiMYnzcCqoIKc=/530x692/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/U7KJOSH3WOGYRXKN7ODFFRWYBM.jpg'
+    
     cover_model = Cover(**cover_request.model_dump(), owner_id = user.get("id"))
     db.add(cover_model)
     db.commit()

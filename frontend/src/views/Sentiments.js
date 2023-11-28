@@ -65,8 +65,9 @@ const Sentiments = () => {
       if (response.ok) {
         const result = await response.json();
         console.log('Data successfully sent to the server.',result);
+        const resultUrl = result.url;
         setTimeout(() => {
-          navigate('/ExtractedAlbumsPage');
+          navigate('/ExtractedAlbumsPage', {state: {resultUrl}});
         }, 5000);
       } else {
         console.error('Failed to send data to the server.');

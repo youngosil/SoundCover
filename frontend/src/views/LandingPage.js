@@ -27,13 +27,13 @@ function LandingPage() {
 
 
   return (
-    <div style={{ width: '100%', margin: '0', height: '100%'}}>
+    <div style={{ width: '100%', margin: '0', height: '100%', fontFamily: 'Boiling-BlackDemo'}}>
       {/* main image */}
       <div style={{ width: '100%', margin: '1rem auto' }}>
         <h2 style={{ fontSize: '5rem' }}>{text}</h2>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button1 style={{ width: '10rem', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '20px'}} onClick={goToMainpage}>Start</Button1>
+        <Button1 style={{ width: '10rem', fontFamily: 'Nephilm', fontSize: '30px'}} onClick={goToMainpage}>start</Button1>
       </div>
     </div>
   );

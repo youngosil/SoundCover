@@ -10,7 +10,7 @@ const Button2 = ({ onClick, children, style, selected }) => {
     border: 'none',
     borderRadius: '10px',
     cursor: 'pointer',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Nephilm',
     margin : '1rem',
     border: '3px solid white',
   };
