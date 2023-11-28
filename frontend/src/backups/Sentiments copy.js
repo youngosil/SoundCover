@@ -4,8 +4,6 @@ import { usePromptContext } from '../contexts/PromptContext.js';
 import Button1 from '../components/Button1';
 import Element from '../components/Element.js';
 import { useUser } from '../contexts/UserContext';
-import Header from '../components/Header';
-import Loading from '../styles/Loading.css';
 
 
 const Sentiments = () => {
@@ -30,7 +28,7 @@ const Sentiments = () => {
   
       updateSharedData(sharedData.message, updatedData);
   
-      {/*setTimeout(() => {
+      setTimeout(() => {
         console.log('updated Data:', updatedData);
       }, 500);
 
@@ -38,7 +36,7 @@ const Sentiments = () => {
         console.log('Shared Data:', sharedData);
       }, 500);
 
-      console.log('title:', sharedData.data.Title);
+      {/*console.log('title:', sharedData.data.Title);
       console.log('singer:', updatedData.data.Singer);
       console.log('selectedGenre:', updatedData.data.selectedGenre);
       console.log('print_title:', updatedData.data.print_title);
@@ -66,10 +64,9 @@ const Sentiments = () => {
   
       if (response.ok) {
         const result = await response.json();
-        console.log('Data successfully sent to the server.',result);
-        const resultUrl = result.url;
+        console.log('Data successfully sent to the server.');
         setTimeout(() => {
-          navigate('/ExtractedAlbumsPage', {state: {resultUrl}});
+          navigate(`/ExtractedAlbumsPage/${result}`);
         }, 5000);
       } else {
         console.error('Failed to send data to the server.');
@@ -87,19 +84,11 @@ const Sentiments = () => {
   };
 
   return (
-    <div>
-      <Header/>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       {/* Loading screen */}
-      {/* 로딩이 true일 때 구현되는 코드*/}
-      {loading && (
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <div className="loading-text">Loading...</div>
-        </div>
-      )}
+      {loading && <div style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</div>}
   
       {/* Main content */}
-      {/* 로딩이 false일 때 구현되는 코드*/}
       {!loading && (
         <React.Fragment>
           <h1>Additionally</h1>

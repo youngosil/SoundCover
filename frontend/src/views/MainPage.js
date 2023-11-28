@@ -16,14 +16,14 @@ const MainPage = () => {
     return (
         // 웹 사이트 소개 
         // 상단 이미지 구성
-        <div style={{position: 'relative', margin: '10%', maxWidth: '1200px', margin: 'auto'}}>
+        <div style={{position: 'relative', margin: '5%', maxWidth: '1200px', margin: 'auto'}}>
             <div style={{width: '100%', marginTop: '100%'}}>
                 <img src="images/mainpage_cover_image.png" style={{ width: '100%', height: '100%'}} alt="Albums" />
-                <div style={{margin: '100px'}}>
-                    <h2 style={{fontSize: '2rem', display: 'flex', justifyContent: 'center'}}>Welcome to SOUNDCOVER</h2>
-                    <h3 style={{fontSize: '1rem', display: 'flex', justifyContent: 'center'}}> 
-                        You can make your own album cover using AI model.<br/>
-                        Just give us your description of your album!
+                <div style={{margin: '100px', textAlign: 'center'}}>
+                    <h2 style={{fontSize: '3rem', display: 'flex', justifyContent: 'center', fontFamily: 'AestheticRegular-8M5dM', color: '#C7FCEB'}}>Welcome to SOUNDCOVER</h2>
+                    <h3 style={{fontSize: '1.5rem', display: 'flex', justifyContent: 'center', fontFamily: 'Nephilm', }}>
+                        You can make <br/>your own album cover <br/>using AI model.<br/><br/><br/>
+                        Just give us <br/>your description <br/>of your album!
                     </h3>
                 </div>
             </div>

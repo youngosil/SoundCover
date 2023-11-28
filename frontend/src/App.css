@@ -13,6 +13,50 @@
   }
 }
 
+
+
+@font-face {
+  font-family: 'Mauline';
+  src: local('Mauline'), url(../public/fonts/Mauline.otf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Valverde-CondSemBdIta';
+  src: local('Mauline'), url(../public/fonts/Valverde-CondSemBdIta.otf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AestheticRegular-8M5dM';
+  src: local('AestheticRegular-8M5dM'), url(../public/fonts/AestheticRegular-8M5dM.ttf) format('truetype');
+  font-weight: 150,300,600,900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AestheticRegular-Yzraq';
+  src: local('AestheticRegular-Yzraq'), url(../public/fonts/AestheticRegular-Yzraq.otf) format('opentype');
+  font-weight: 150,300,600,900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Boiling-BlackDemo';
+  src: local('Boiling-BlackDemo'), url(../public/fonts/Boiling-BlackDemo.ttf) format('truetype');
+  font-weight: 150,300,600,900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nephilm';
+  src: local('Nephilm'), url(../public/fonts/Nephilm.otf) format('opentype');
+  font-weight: 150,300,600,900;
+  font-style: normal;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -46,14 +90,14 @@ html {
   align-items: center;
   justify-content: center;
   overflow-y: scroll;
-  background: linear-gradient(to bottom, black, pink);
+  background: linear-gradient(to bottom, black 0%, pink 70%, white 100%);
   background-attachment: fixed;
 }
 
 body {
   margin-top: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nephilm', 'Mauline', 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;

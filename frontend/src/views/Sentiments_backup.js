@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePromptContext } from '../contexts/PromptContext.js';
-import Button1 from '../components/Button1';
+import Button1 from '../components/Button1.js';
 import Element from '../components/Element.js';
-import { useUser } from '../contexts/UserContext';
-import Header from '../components/Header';
-import Loading from '../styles/Loading.css';
+import { useUser } from '../contexts/UserContext.js';
+import Header from '../components/Header.js';
 
 
 const Sentiments = () => {
@@ -91,12 +90,14 @@ const Sentiments = () => {
       <Header/>
       {/* Loading screen */}
       {/* 로딩이 true일 때 구현되는 코드*/}
-      {loading && (
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <div className="loading-text">Loading...</div>
-        </div>
-      )}
+      {loading && 
+      <div 
+        style={{ 
+          fontSize: '50px', 
+          textAlign: 'center', 
+          marginTop: '20px' }}>
+          Loading...
+      </div>}
   
       {/* Main content */}
       {/* 로딩이 false일 때 구현되는 코드*/}

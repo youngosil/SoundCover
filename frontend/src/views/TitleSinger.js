@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePromptContext } from '../contexts/PromptContext';
 import Button1 from '../components/Button1';
+import Header from '../components/Header';
 
 const TitleSinger = () => {
     
@@ -34,33 +35,39 @@ const TitleSinger = () => {
 
 
   return (
-    <div style={{ width: '100%', margin: '0', fontFamily: 'Montserrat'}}>
-        <div style={{ width: '100%', margin: '1rem auto'}}>
-            <label style={{ display: 'flex', alignItems: 'center' }}>
-                <h1>What's your title ?</h1>
-                <input
-                    name="Title"
-                    placeholder='Your album title'
-                    value={Title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem'}}
-                />
-            </label>
-            <label style={{ display: 'flex', alignItems: 'center' }}>
-                <h1>What's your singer name ?</h1>
-                <input
-                    name="Singer"
-                    placeholder='Your singer name'
-                    value={Singer}
-                    onChange={(e) => setSinger(e.target.value)}
-                    style={{ padding: '1rem', marginTop: '0.5rem', marginLeft: '1.7rem', marginBottom: '1rem', width: '20rem'}}
-                />
-            </label>
-        </div>
+    <div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Button1 onClick={handlePrompt}>Send data</Button1>
-        </div>
+      <div>
+        <Header/>
+      </div>
+
+      <div style={{ width: '100%', margin: '1rem auto' }}>
+        <label>
+          <h1>What's your title ?</h1>
+          <input
+            name="Title"
+            placeholder='( your album title )'
+            value={Title}
+            onChange={(e) => setTitle(e.target.value)}
+            style={{ padding: '1rem', marginTop: '0.5rem', marginBottom: '1rem', width: '20rem', fontFamily: 'Montserrat'}}
+          />
+        </label>
+        <label>
+          <h1>What's your singer name ?</h1><br/>
+          <input
+            name="Singer"
+            placeholder='( your singer name )'
+            value={Singer}
+            onChange={(e) => setSinger(e.target.value)}
+            style={{ padding: '1rem', marginTop: '0.5rem', marginBottom: '1rem', width: '20rem', fontFamily: 'Montserrat'}}
+          />
+        </label>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Button1 onClick={handlePrompt}>다음으로 넘어가기 &#187;&#187;</Button1>
+      </div>
+
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// Header.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
@@ -8,8 +7,11 @@ const Header = () => {
   const { user, logout } = useUser();
 
   const handleLogout = () => {
-    // 로그아웃 로직 수행 후 UserContext에서 로그아웃
     logout();
+  };
+
+  const goToMyAlbums = () => {
+    navigate('/MyAlbums');
   };
 
   return (
@@ -20,12 +22,26 @@ const Header = () => {
       <div style={userInfoStyle}>
         {user ? (
           <>
-            <h3>{user.username}</h3>
-            <button style={{fontFamily:'Montserrat'}}
-                    onClick={handleLogout}>logout</button>
+            <h3>Hello, {user.username}</h3>
+            <button 
+              style={{ 
+                fontFamily: 'Nephilm', 
+                cursor: 'pointer',}}
+              onClick={handleLogout}>
+                logout
+            </button>
+            <button 
+              style={{ 
+                fontFamily: 'Nephilm', 
+                cursor: 'pointer'}} 
+              onClick={goToMyAlbums}>
+                My Albums
+            </button>
           </>
         ) : (
-          <div onClick={() => navigate('/LoginPage')}>로그인</div>
+          <div onClick={() => navigate('/LoginPage')}>
+            로그인
+          </div>
         )}
       </div>
     </div>
@@ -33,17 +49,23 @@ const Header = () => {
 };
 
 const headerStyle = {
+  position: 'fixed',
+  top: 20,
+  left: 20,
+  width: '95%',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: '10px',
+  marginRight: '1rem',
   color: '#fff',
-  width: '100%'
 };
 
 const logoStyle = {
   cursor: 'pointer',
+  fontSize: '1.5rem'
 };
+
 
 const navStyle = {
   display: 'flex',
