@@ -78,7 +78,7 @@ function LoginPage() {
 
           {/* 실패 시 에러 팝업*/}
           {showErrorPopup && (
-            <h4 style={{ marginTop: '1rem', color: 'red', fontFamily:'Montserrat', textAlign:'center'}}>
+            <h4 style={{ marginTop: '1rem', color: 'red', fontFamily:'Nephilm', textAlign:'center'}}>
               ID or password is not valid.
             </h4>
           )}

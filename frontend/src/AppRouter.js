@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import './App.css'
 
 import LandingPage from './views/LandingPage';
@@ -14,6 +15,7 @@ import PaintingStylePage from './views/PaintingStylePage';
 import Elements from './views/Elements';
 import Sentiments from './views/Sentiments';
 import ExtractedAlbumsPage from './views/ExtractedAlbumsPage';
+
 
 
 
