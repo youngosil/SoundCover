@@ -1,0 +1,64 @@
+.element-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.element-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.remove-button {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  border: 3px solid black;
+  transition: opacity 300ms;
+  font-family: 'Nephilm', sans-serif;
+}
+
+.label-style {
+  color: '#C7FCEB';
+  font-weight: 'bold';
+}
+
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+
+/* Style for the list container */
+.List {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.input-box {
+  padding: '2rem';
+  margin: '1rem';
+  width: '300px';
+  height: '10%';
+  text-align: 'center';
+}
